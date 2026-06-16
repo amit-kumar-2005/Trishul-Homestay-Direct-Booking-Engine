@@ -1,142 +1,108 @@
 # Trishul Homestay Direct Booking Engine
 
-## Project Overview
+## WD-05 Internship Project
 
-Trishul Homestay Direct Booking Engine is a web-based application designed to help homestay owners accept direct booking inquiries without relying on third-party Online Travel Agencies (OTAs). The platform enables guests to explore available rooms, check availability, and submit booking requests directly to the homestay owner.
-
-The primary goal of this project is to reduce commission costs, improve customer engagement, and provide a simple digital booking solution for community-based homestays.
+A responsive direct booking website developed for Trishul Homestay to reduce dependency on Online Travel Agencies (OTAs) and enable commission-free direct bookings.
 
 ---
 
-## Problem Statement
+## Project Objective
 
-Many homestays depend heavily on OTAs such as Booking.com and Airbnb, which charge significant commissions on each booking. Small homestay owners often lack a direct booking platform, resulting in reduced profits and limited customer interaction.
+Trishul Eco-Homestays currently pays 18–25% commission to OTA platforms.
 
-This project aims to provide a zero-commission booking solution through a responsive web application.
+This project provides a direct booking interface that allows guests to:
+
+- View accommodation options
+- Check availability
+- Submit booking inquiries directly
+- Connect through WhatsApp without third-party commissions
 
 ---
 
 ## Features
 
-### Guest Features
+### Homepage
 
-* View homestay details and amenities
-* Browse available room types
-* Check room availability
-* Submit booking inquiries
-* Contact homestay owners via WhatsApp
+- Premium Hero Section
+- Property Introduction
+- Trust Indicators
+- Featured Rooms
+- Gallery Section
+- Testimonials
+- Call-To-Action
 
-### Admin Features
+### Rooms Page
 
-* Manage room information
-* Update availability data
-* View booking inquiries
-* Maintain property details
+- Dynamic Room Listing
+- JSON-Based Room Data
+- Amenities Display
+- Pricing Information
 
-### AI Features
+### Availability Page
 
-* AI-powered booking assistant using Gemini API
-* Room recommendation based on guest requirements
-* Automated responses to common guest queries
-* Travel and stay suggestions
+- Availability Calendar
+- JSON-Based Availability System
+- Available / Booked Indicators
+- Month Navigation
+
+### Booking Page
+
+- Booking Inquiry Form
+- Form Validation
+- WhatsApp Integration
+- Mobile Friendly Interface
+
+### User Experience
+
+- Responsive Design
+- Light Theme
+- Dark Theme
+- Mobile Navigation
+- Smooth Animations
 
 ---
 
-## Technology Stack
+## Technologies Used
 
 ### Frontend
 
-* React.js
-* HTML5
-* CSS3
-* JavaScript
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
 
-### Backend
+### Data Storage
 
-* Node.js
-* Express.js
+- JSON Files
 
-### Database
+### Booking Integration
 
-* MongoDB Atlas
+- WhatsApp API
 
-### AI Integration
+### Icons
 
-* Google Gemini API
+- Font Awesome
 
-### Version Control
+### Fonts
 
-* Git & GitHub
-
----
-
-## Project Structure
-
-trishul-homestay-direct-booking-engine/
-
-├── client/
-
-│   ├── src/
-
-│   ├── components/
-
-│   ├── pages/
-
-│   └── services/
-
-│
-
-├── server/
-
-│   ├── routes/
-
-│   ├── controllers/
-
-│   ├── models/
-
-│   └── middleware/
-
-│
-
-├── database/
-
-├── public/
-
-├── README.md
-
-└── package.json
+- Poppins
+- Inter
 
 ---
 
-## Future Enhancements
+## Folder Structure
 
-* Online payment gateway integration
-* Email notifications
-* Booking confirmation system
-* User authentication
-* Admin dashboard analytics
-* Multi-language support
+```text
+Trishul-Homestay-Direct-Booking-Engine/
 
----
+index.html
+rooms.html
+availability.html
+booking.html
 
-## Objectives
+assets/
+css/
+js/
+data/
+docs/
 
-* Reduce OTA dependency
-* Increase direct bookings
-* Improve customer experience
-* Provide affordable digital solutions for homestays
-* Support local tourism businesses
-
----
-
-## Author
-
-Amit Kumar
-
-Intern ID: TBI-26100150
-
-Summer Internship Program (SIP) 2026
-
-Technology Business Incubator (TBI)
-
-Graphic Era University
+README.md
