@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Standard Room",
+    "price": "₹1800 / Night",
+    "capacity": "2 Guests",
+    "image": "assets/images/room-standard.jpg",
+    "description": "Comfortable room ideal for solo travelers and couples looking for a peaceful stay.",
+    "amenities": [
+      "Free WiFi",
+      "Hot Water",
+      "Parking",
+      "Mountain View"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Deluxe Cottage",
+    "price": "₹2500 / Night",
+    "capacity": "3 Guests",
+    "image": "assets/images/room-deluxe.jpg",
+    "description": "Premium cottage with private outdoor seating and beautiful mountain views.",
+    "amenities": [
+      "Free WiFi",
+      "Breakfast",
+      "Bonfire",
+      "Mountain View"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Family Suite",
+    "price": "₹3500 / Night",
+    "capacity": "5 Guests",
+    "image": "assets/images/room-family.jpg",
+    "description": "Spacious family suite designed for larger groups and family vacations.",
+    "amenities": [
+      "Free WiFi",
+      "Family Space",
+      "Dining Area",
+      "Parking"
+    ]
+  }
+]
