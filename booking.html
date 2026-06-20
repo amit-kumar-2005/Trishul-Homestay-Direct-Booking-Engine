@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Booking Inquiry | Trishul Homestay
+    </title>
+
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="css/style.css">
+
+    <link rel="stylesheet"
+        href="css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <nav class="navbar container">
+
+            <div class="logo">
+
+                <a href="index.html">
+
+                    TRISHUL
+                    <span>HOMESTAY</span>
+
+                </a>
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="rooms.html">Rooms</a></li>
+
+                <li><a href="availability.html">Availability</a></li>
+
+                <li>
+                    <a href="booking.html"
+                        class="active">
+                        Book Now
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="nav-actions">
+
+                <button
+                    id="theme-toggle"
+                    class="theme-toggle">
+
+                    <i class="fas fa-moon"></i>
+
+                </button>
+
+                <button class="hamburger">
+
+                    <i class="fas fa-bars"></i>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section
+        class="hero"
+        style="min-height:60vh;">
+
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <span class="hero-tag">
+
+                    Direct Booking Inquiry
+
+                </span>
+
+                <h1>
+
+                    Book Your Stay
+
+                </h1>
+
+                <p>
+
+                    Submit your booking request directly
+                    through WhatsApp and receive a quick response.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- BOOKING FORM -->
+
+    <section class="booking-section">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <span class="section-tag">
+
+                    Booking Form
+
+                </span>
+
+                <h2>
+
+                    Send Booking Inquiry
+
+                </h2>
+
+            </div>
+
+            <div class="booking-wrapper">
+
+                <!-- FORM -->
+
+                <form id="bookingForm"
+                    class="booking-form">
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Check-In Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            id="checkIn"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Check-Out Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            id="checkOut"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Number of Guests
+
+                        </label>
+
+                        <select id="guests">
+
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5+</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Room Type
+
+                        </label>
+
+                        <select id="roomType">
+
+                            <option>
+                                Standard Room
+                            </option>
+
+                            <option>
+                                Deluxe Cottage
+                            </option>
+
+                            <option>
+                                Family Suite
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your name"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Phone Number
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="9876543210"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Email Address
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required>
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label>
+
+                            Special Request
+
+                        </label>
+
+                        <textarea
+                            id="message"
+                            rows="5"
+                            placeholder="Any special request..."></textarea>
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+
+                            <i class="fab fa-whatsapp"></i>
+
+                            Send Booking Inquiry
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <!-- SIDE INFO -->
+
+                <div class="booking-info">
+
+                    <h3>
+
+                        Why Book Direct?
+
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            ✅ No OTA Commission
+                        </li>
+
+                        <li>
+                            ✅ Best Available Price
+                        </li>
+
+                        <li>
+                            ✅ Quick WhatsApp Response
+                        </li>
+
+                        <li>
+                            ✅ Flexible Booking Support
+                        </li>
+
+                    </ul>
+
+                    <div class="contact-card">
+
+                        <h4>
+
+                            Contact Information
+
+                        </h4>
+
+                        <p>
+
+                            📞 +91 9876543210
+
+                        </p>
+
+                        <p>
+
+                            📧 info@trishulhomestay.com
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+
+                    © 2025 Trishul Homestay.
+                    All Rights Reserved.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/booking.js"></script>
+
+</body>
+
+</html>

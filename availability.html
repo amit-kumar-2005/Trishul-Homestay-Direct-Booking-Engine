@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Availability | Trishul Homestay
+    </title>
+
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="css/style.css">
+
+    <link rel="stylesheet"
+        href="css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <nav class="navbar container">
+
+            <div class="logo">
+
+                <a href="index.html">
+
+                    TRISHUL
+                    <span>HOMESTAY</span>
+
+                </a>
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="rooms.html">
+                        Rooms
+                    </a>
+                </li>
+
+                <li>
+                    <a href="availability.html"
+                        class="active">
+                        Availability
+                    </a>
+                </li>
+
+                <li>
+                    <a href="booking.html">
+                        Book Now
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="nav-actions">
+
+                <button
+                    id="theme-toggle"
+                    class="theme-toggle">
+
+                    <i class="fas fa-moon"></i>
+
+                </button>
+
+                <button class="hamburger">
+
+                    <i class="fas fa-bars"></i>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section
+        class="hero"
+        style="min-height:60vh;">
+
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <span class="hero-tag">
+
+                    Booking Calendar
+
+                </span>
+
+                <h1>
+
+                    Check Availability
+
+                </h1>
+
+                <p>
+
+                    View available and booked dates
+                    before submitting your booking inquiry.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CALENDAR SECTION -->
+
+    <section class="availability-section">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <span class="section-tag">
+
+                    Availability Calendar
+
+                </span>
+
+                <h2>
+
+                    Room Availability
+
+                </h2>
+
+            </div>
+
+            <!-- LEGEND -->
+
+            <div class="calendar-legend">
+
+                <div class="legend-item">
+
+                    <span class="available-box"></span>
+
+                    Available
+
+                </div>
+
+                <div class="legend-item">
+
+                    <span class="booked-box"></span>
+
+                    Booked
+
+                </div>
+
+            </div>
+
+            <!-- MONTH NAVIGATION -->
+
+            <div class="calendar-header">
+
+                <button
+                    id="prevMonth"
+                    class="btn btn-primary">
+
+                    <i class="fas fa-chevron-left"></i>
+
+                </button>
+
+                <h3 id="monthYear">
+
+                    July 2026
+
+                </h3>
+
+                <button
+                    id="nextMonth"
+                    class="btn btn-primary">
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+            <!-- CALENDAR -->
+
+            <div id="calendar"
+                class="calendar-grid">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+
+    <section class="cta-section">
+
+        <div class="container">
+
+            <div class="cta-content">
+
+                <h2>
+
+                    Found Your Dates?
+
+                </h2>
+
+                <p>
+
+                    Send your booking inquiry directly.
+
+                </p>
+
+                <a href="booking.html"
+                    class="btn btn-primary">
+
+                    Book Now
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-column">
+
+                    <h3>
+
+                        Trishul Homestay
+
+                    </h3>
+
+                    <p>
+
+                        Direct booking experience
+                        with transparent availability.
+
+                    </p>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h3>
+
+                        Quick Links
+
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            <a href="index.html">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="rooms.html">
+                                Rooms
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="booking.html">
+                                Book Now
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h3>
+
+                        Contact
+
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            +91 9876543210
+                        </li>
+
+                        <li>
+                            info@trishulhomestay.com
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h3>
+
+                        Follow Us
+
+                    </h3>
+
+                    <div class="social-links">
+
+                        <a href="#">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- JS -->
+
+    <script src="js/main.js"></script>
+
+    <script src="js/theme.js"></script>
+
+    <script src="js/availability.js"></script>
+
+</body>
+
+</html>
