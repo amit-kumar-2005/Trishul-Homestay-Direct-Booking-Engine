@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Standard Room",
+    "price": 2499,
+    "capacity": "2 Guests",
+    "image": "room-standard.jpg",
+    "description": "Comfortable room with mountain views and essential amenities."
+  },
+  {
+    "id": 2,
+    "name": "Deluxe Room",
+    "price": 3999,
+    "capacity": "3 Guests",
+    "image": "room-deluxe.jpg",
+    "description": "Spacious deluxe room with premium interiors and balcony."
+  },
+  {
+    "id": 3,
+    "name": "Family Room",
+    "price": 5499,
+    "capacity": "5 Guests",
+    "image": "room-family.jpg",
+    "description": "Large family room suitable for groups and family vacations."
+  }
+]

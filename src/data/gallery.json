@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "image": "gallery1.jpg",
+    "title": "Mountain View"
+  },
+  {
+    "id": 2,
+    "image": "gallery2.jpg",
+    "title": "Luxury Room"
+  },
+  {
+    "id": 3,
+    "image": "gallery3.jpg",
+    "title": "Nature Retreat"
+  },
+  {
+    "id": 4,
+    "image": "gallery4.jpg",
+    "title": "Homestay Exterior"
+  },
+  {
+    "id": 5,
+    "image": "gallery5.jpg",
+    "title": "Dining Area"
+  },
+  {
+    "id": 6,
+    "image": "gallery6.jpg",
+    "title": "Peaceful Environment"
+  }
+]

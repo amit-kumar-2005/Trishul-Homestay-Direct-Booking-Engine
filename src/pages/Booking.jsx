@@ -1,7 +1,102 @@
 export default function Booking() {
   return (
-    <h1 className="text-5xl text-center mt-20">
-      Booking Page
-    </h1>
+    <section className="pt-32 pb-20 px-5 bg-slate-50 min-h-screen">
+
+      <div className="max-w-4xl mx-auto">
+
+        <div className="text-center mb-14">
+
+          <span className="text-teal-700 font-semibold uppercase tracking-wider">
+            Booking Inquiry
+          </span>
+
+          <h1 className="text-3xl md:text-5xl font-bold mt-3">
+            Reserve Your Stay
+          </h1>
+
+          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+            Fill out the form below and our team will contact you
+            shortly to confirm availability and booking details.
+          </p>
+
+        </div>
+
+        <div className="bg-white rounded-3xl shadow-lg p-8">
+
+          <div className="grid md:grid-cols-2 gap-6">
+
+            <div>
+              <label className="block mb-2 font-medium">
+                Full Name
+              </label>
+
+              <input
+                type="text"
+                placeholder="Enter your name"
+                className="w-full border rounded-xl px-4 py-3"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-medium">
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full border rounded-xl px-4 py-3"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-medium">
+                Phone Number
+              </label>
+
+              <input
+                type="tel"
+                placeholder="Enter phone number"
+                className="w-full border rounded-xl px-4 py-3"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-medium">
+                Guests
+              </label>
+
+              <select className="w-full border rounded-xl px-4 py-3">
+                <option>1 Guest</option>
+                <option>2 Guests</option>
+                <option>3 Guests</option>
+                <option>4 Guests</option>
+                <option>5 Guests</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div className="mt-6">
+            <label className="block mb-2 font-medium">
+              Special Request
+            </label>
+
+            <textarea
+              rows="5"
+              placeholder="Write your message..."
+              className="w-full border rounded-xl px-4 py-3"
+            ></textarea>
+          </div>
+
+          <button className="mt-8 w-full md:w-auto bg-teal-700 text-white px-8 py-4 rounded-full hover:bg-teal-800 transition">
+            Submit Booking Request
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
   );
 }
