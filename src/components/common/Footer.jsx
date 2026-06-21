@@ -1,13 +1,28 @@
+import { useTheme } from "../../context/ThemeContext";
+
 export default function Footer() {
+  const { darkMode } = useTheme();
+
   return (
-    <footer className="bg-slate-950 text-white mt-20">
+    <footer
+      className={`mt-20 transition-colors duration-300 ${
+        darkMode
+          ? "bg-slate-950 text-white"
+          : "bg-slate-100 text-slate-900"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
 
         <div>
           <h3 className="text-2xl font-bold mb-4">
             Trishul Homestay
           </h3>
-          <p className="text-slate-300">
+
+          <p
+            className={
+              darkMode ? "text-slate-300" : "text-slate-600"
+            }
+          >
             Experience nature, comfort and authentic
             hospitality with direct booking benefits.
           </p>
@@ -18,7 +33,11 @@ export default function Footer() {
             Quick Links
           </h3>
 
-          <ul className="space-y-2 text-slate-300">
+          <ul
+            className={`space-y-2 ${
+              darkMode ? "text-slate-300" : "text-slate-600"
+            }`}
+          >
             <li>Home</li>
             <li>Rooms</li>
             <li>Availability</li>
@@ -31,7 +50,11 @@ export default function Footer() {
             Contact
           </h3>
 
-          <ul className="space-y-2 text-slate-300">
+          <ul
+            className={`space-y-2 ${
+              darkMode ? "text-slate-300" : "text-slate-600"
+            }`}
+          >
             <li>+91 9876543210</li>
             <li>info@trishulhomestay.com</li>
             <li>Uttarakhand, India</li>
@@ -43,14 +66,24 @@ export default function Footer() {
             Follow Us
           </h3>
 
-          <p className="text-slate-300">
+          <p
+            className={
+              darkMode ? "text-slate-300" : "text-slate-600"
+            }
+          >
             Facebook • Instagram • WhatsApp
           </p>
         </div>
 
       </div>
 
-      <div className="border-t border-slate-800 py-5 text-center text-slate-400">
+      <div
+        className={`py-5 text-center ${
+          darkMode
+            ? "border-t border-slate-800 text-slate-400"
+            : "border-t border-slate-300 text-slate-500"
+        }`}
+      >
         © 2026 Trishul Homestay Direct Booking Engine
       </div>
     </footer>

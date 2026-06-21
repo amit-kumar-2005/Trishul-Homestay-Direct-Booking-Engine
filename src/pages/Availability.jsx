@@ -1,7 +1,16 @@
-export default function Availability() {
-  return (
-    <section className="pt-32 pb-20 px-5 bg-slate-50 min-h-screen">
+import { useTheme } from "../context/ThemeContext";
 
+export default function Availability() {
+  const { darkMode } = useTheme();
+
+  return (
+    <section
+      className={`pt-32 pb-20 px-5 min-h-screen transition-colors duration-300 ${
+        darkMode
+          ? "bg-slate-900 text-white"
+          : "bg-slate-50 text-slate-900"
+      }`}
+    >
       <div className="max-w-5xl mx-auto">
 
         <div className="text-center mb-14">
@@ -10,11 +19,19 @@ export default function Availability() {
             Availability
           </span>
 
-          <h1 className="text-3xl md:text-5xl font-bold mt-3">
+          <h1
+            className={`text-3xl md:text-5xl font-bold mt-3 ${
+              darkMode ? "text-white" : "text-slate-900"
+            }`}
+          >
             Check Room Availability
           </h1>
 
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+          <p
+            className={`mt-4 max-w-2xl mx-auto ${
+              darkMode ? "text-slate-300" : "text-slate-600"
+            }`}
+          >
             Select your preferred dates and check room availability
             before submitting a booking request.
           </p>
@@ -22,7 +39,13 @@ export default function Availability() {
         </div>
 
         {/* Availability Form */}
-        <div className="bg-white rounded-3xl shadow-lg p-8">
+        <div
+          className={`rounded-3xl shadow-lg p-8 ${
+            darkMode
+              ? "bg-slate-800"
+              : "bg-white"
+          }`}
+        >
 
           <div className="grid md:grid-cols-3 gap-6">
 
@@ -33,7 +56,11 @@ export default function Availability() {
 
               <input
                 type="date"
-                className="w-full border rounded-xl px-4 py-3"
+                className={`w-full border rounded-xl px-4 py-3 ${
+                  darkMode
+                    ? "bg-slate-700 border-slate-600 text-white"
+                    : "bg-white border-slate-300 text-slate-900"
+                }`}
               />
             </div>
 
@@ -44,7 +71,11 @@ export default function Availability() {
 
               <input
                 type="date"
-                className="w-full border rounded-xl px-4 py-3"
+                className={`w-full border rounded-xl px-4 py-3 ${
+                  darkMode
+                    ? "bg-slate-700 border-slate-600 text-white"
+                    : "bg-white border-slate-300 text-slate-900"
+                }`}
               />
             </div>
 
@@ -53,7 +84,13 @@ export default function Availability() {
                 Guests
               </label>
 
-              <select className="w-full border rounded-xl px-4 py-3">
+              <select
+                className={`w-full border rounded-xl px-4 py-3 ${
+                  darkMode
+                    ? "bg-slate-700 border-slate-600 text-white"
+                    : "bg-white border-slate-300 text-slate-900"
+                }`}
+              >
                 <option>1 Guest</option>
                 <option>2 Guests</option>
                 <option>3 Guests</option>
@@ -71,7 +108,6 @@ export default function Availability() {
         </div>
 
       </div>
-
     </section>
   );
 }

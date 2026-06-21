@@ -1,7 +1,16 @@
-export default function Booking() {
-  return (
-    <section className="pt-32 pb-20 px-5 bg-slate-50 min-h-screen">
+import { useTheme } from "../context/ThemeContext";
 
+export default function Booking() {
+  const { darkMode } = useTheme();
+
+  return (
+    <section
+      className={`pt-32 pb-20 px-5 min-h-screen transition-colors duration-300 ${
+        darkMode
+          ? "bg-slate-900 text-white"
+          : "bg-slate-50 text-slate-900"
+      }`}
+    >
       <div className="max-w-4xl mx-auto">
 
         <div className="text-center mb-14">
@@ -10,18 +19,34 @@ export default function Booking() {
             Booking Inquiry
           </span>
 
-          <h1 className="text-3xl md:text-5xl font-bold mt-3">
+          <h1
+            className={`text-3xl md:text-5xl font-bold mt-3 ${
+              darkMode ? "text-white" : "text-slate-900"
+            }`}
+          >
             Reserve Your Stay
           </h1>
 
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+          <p
+            className={`mt-4 max-w-2xl mx-auto ${
+              darkMode
+                ? "text-slate-300"
+                : "text-slate-600"
+            }`}
+          >
             Fill out the form below and our team will contact you
             shortly to confirm availability and booking details.
           </p>
 
         </div>
 
-        <div className="bg-white rounded-3xl shadow-lg p-8">
+        <div
+          className={`rounded-3xl shadow-lg p-8 ${
+            darkMode
+              ? "bg-slate-800"
+              : "bg-white"
+          }`}
+        >
 
           <div className="grid md:grid-cols-2 gap-6">
 
@@ -33,7 +58,11 @@ export default function Booking() {
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="w-full border rounded-xl px-4 py-3"
+                className={`w-full border rounded-xl px-4 py-3 ${
+                  darkMode
+                    ? "bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                    : "bg-white border-slate-300 text-slate-900"
+                }`}
               />
             </div>
 
@@ -45,7 +74,11 @@ export default function Booking() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full border rounded-xl px-4 py-3"
+                className={`w-full border rounded-xl px-4 py-3 ${
+                  darkMode
+                    ? "bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                    : "bg-white border-slate-300 text-slate-900"
+                }`}
               />
             </div>
 
@@ -57,7 +90,11 @@ export default function Booking() {
               <input
                 type="tel"
                 placeholder="Enter phone number"
-                className="w-full border rounded-xl px-4 py-3"
+                className={`w-full border rounded-xl px-4 py-3 ${
+                  darkMode
+                    ? "bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                    : "bg-white border-slate-300 text-slate-900"
+                }`}
               />
             </div>
 
@@ -66,7 +103,13 @@ export default function Booking() {
                 Guests
               </label>
 
-              <select className="w-full border rounded-xl px-4 py-3">
+              <select
+                className={`w-full border rounded-xl px-4 py-3 ${
+                  darkMode
+                    ? "bg-slate-700 border-slate-600 text-white"
+                    : "bg-white border-slate-300 text-slate-900"
+                }`}
+              >
                 <option>1 Guest</option>
                 <option>2 Guests</option>
                 <option>3 Guests</option>
@@ -85,7 +128,11 @@ export default function Booking() {
             <textarea
               rows="5"
               placeholder="Write your message..."
-              className="w-full border rounded-xl px-4 py-3"
+              className={`w-full border rounded-xl px-4 py-3 ${
+                darkMode
+                  ? "bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                  : "bg-white border-slate-300 text-slate-900"
+              }`}
             ></textarea>
           </div>
 
@@ -96,7 +143,6 @@ export default function Booking() {
         </div>
 
       </div>
-
     </section>
   );
 }

@@ -1,8 +1,17 @@
 import aboutImage from "../../assets/images/about.jpg";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function About() {
+  const { darkMode } = useTheme();
+
   return (
-    <section className="py-24 bg-white">
+    <section
+      className={`py-24 transition-colors duration-300 ${
+        darkMode
+          ? "bg-slate-900 text-white"
+          : "bg-white text-slate-900"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="grid lg:grid-cols-2 gap-14 items-center">
@@ -23,20 +32,36 @@ export default function About() {
               About Us
             </span>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
+            <h2
+              className={`text-4xl md:text-5xl font-bold mt-4 ${
+                darkMode ? "text-white" : "text-slate-900"
+              }`}
+            >
               Authentic Eco-Tourism
               <br />
               Experience
             </h2>
 
-            <p className="mt-6 text-lg text-slate-600 leading-relaxed">
+            <p
+              className={`mt-6 text-lg leading-relaxed ${
+                darkMode
+                  ? "text-slate-300"
+                  : "text-slate-600"
+              }`}
+            >
               Trishul Homestay offers a peaceful retreat surrounded by
               nature, mountains, and local culture. Our mission is to
               provide travelers with a comfortable stay while supporting
               sustainable tourism and direct booking benefits.
             </p>
 
-            <p className="mt-4 text-lg text-slate-600 leading-relaxed">
+            <p
+              className={`mt-4 text-lg leading-relaxed ${
+                darkMode
+                  ? "text-slate-300"
+                  : "text-slate-600"
+              }`}
+            >
               By booking directly with us, guests enjoy better pricing,
               personalized hospitality, and an authentic local experience
               without third-party commissions.
@@ -44,38 +69,86 @@ export default function About() {
 
             <div className="grid grid-cols-2 gap-6 mt-10">
 
-              <div className="bg-slate-50 p-5 rounded-2xl shadow-sm">
+              <div
+                className={`p-5 rounded-2xl shadow-sm ${
+                  darkMode
+                    ? "bg-slate-800"
+                    : "bg-slate-50"
+                }`}
+              >
                 <h3 className="text-2xl font-bold text-teal-700">
                   500+
                 </h3>
-                <p className="text-slate-600">
+                <p
+                  className={
+                    darkMode
+                      ? "text-slate-300"
+                      : "text-slate-600"
+                  }
+                >
                   Happy Guests
                 </p>
               </div>
 
-              <div className="bg-slate-50 p-5 rounded-2xl shadow-sm">
+              <div
+                className={`p-5 rounded-2xl shadow-sm ${
+                  darkMode
+                    ? "bg-slate-800"
+                    : "bg-slate-50"
+                }`}
+              >
                 <h3 className="text-2xl font-bold text-teal-700">
                   0%
                 </h3>
-                <p className="text-slate-600">
+                <p
+                  className={
+                    darkMode
+                      ? "text-slate-300"
+                      : "text-slate-600"
+                  }
+                >
                   OTA Commission
                 </p>
               </div>
 
-              <div className="bg-slate-50 p-5 rounded-2xl shadow-sm">
+              <div
+                className={`p-5 rounded-2xl shadow-sm ${
+                  darkMode
+                    ? "bg-slate-800"
+                    : "bg-slate-50"
+                }`}
+              >
                 <h3 className="text-2xl font-bold text-teal-700">
                   Eco
                 </h3>
-                <p className="text-slate-600">
+                <p
+                  className={
+                    darkMode
+                      ? "text-slate-300"
+                      : "text-slate-600"
+                  }
+                >
                   Tourism Focus
                 </p>
               </div>
 
-              <div className="bg-slate-50 p-5 rounded-2xl shadow-sm">
+              <div
+                className={`p-5 rounded-2xl shadow-sm ${
+                  darkMode
+                    ? "bg-slate-800"
+                    : "bg-slate-50"
+                }`}
+              >
                 <h3 className="text-2xl font-bold text-teal-700">
                   24/7
                 </h3>
-                <p className="text-slate-600">
+                <p
+                  className={
+                    darkMode
+                      ? "text-slate-300"
+                      : "text-slate-600"
+                  }
+                >
                   Guest Support
                 </p>
               </div>
