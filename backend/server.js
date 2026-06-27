@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import roomRoutes from "./routes/roomRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
+import availabilityRoutes from "./routes/availabilityRoutes.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 // API Routes
 app.use("/api/rooms", roomRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/availability", availabilityRoutes);
 
 // 404 Handler
 app.use((req, res) => {
