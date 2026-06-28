@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-import BookingFields from "./BookingFields";
-import BookingMessages from "./BookingMessages";
 
 export default function BookingForm({ darkMode }) {
   const [rooms, setRooms] = useState([]);
@@ -108,17 +106,173 @@ export default function BookingForm({ darkMode }) {
         darkMode ? "bg-slate-800" : "bg-white"
       }`}
     >
-      <BookingMessages
-        message={message}
-        error={error}
-      />
+      {message && (
+        <div className="mb-6 rounded-lg bg-green-100 text-green-700 px-4 py-3">
+          {message}
+        </div>
+      )}
+
+      {error && (
+        <div className="mb-6 rounded-lg bg-red-100 text-red-700 px-4 py-3">
+          {error}
+        </div>
+      )}
 
       <div className="grid md:grid-cols-2 gap-6">
-        <BookingFields
-          darkMode={darkMode}
-          rooms={rooms}
-          formData={formData}
-          handleChange={handleChange}
+
+        <div>
+          <label className="block mb-2 font-medium">
+            Full Name
+          </label>
+
+          <input
+            type="text"
+            name="guestName"
+            value={formData.guestName}
+            onChange={handleChange}
+            placeholder="Enter your full name"
+            className={`w-full border rounded-xl px-4 py-3 ${
+              darkMode
+                ? "bg-slate-700 border-slate-600 text-white"
+                : "bg-white border-slate-300"
+            }`}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-2 font-medium">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter your email"
+            className={`w-full border rounded-xl px-4 py-3 ${
+              darkMode
+                ? "bg-slate-700 border-slate-600 text-white"
+                : "bg-white border-slate-300"
+            }`}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-2 font-medium">
+            Phone Number
+          </label>
+
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Enter your phone number"
+            className={`w-full border rounded-xl px-4 py-3 ${
+              darkMode
+                ? "bg-slate-700 border-slate-600 text-white"
+                : "bg-white border-slate-300"
+            }`}
+          />
+        </div>
+
+                <div>
+          <label className="block mb-2 font-medium">
+            Select Room
+          </label>
+
+          <select
+            name="roomId"
+            value={formData.roomId}
+            onChange={handleChange}
+            className={`w-full border rounded-xl px-4 py-3 ${
+              darkMode
+                ? "bg-slate-700 border-slate-600 text-white"
+                : "bg-white border-slate-300"
+            }`}
+          >
+            {rooms.map((room) => (
+              <option key={room.id} value={room.id}>
+                {room.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className="block mb-2 font-medium">
+            Number of Guests
+          </label>
+
+          <input
+            type="number"
+            name="guests"
+            min="1"
+            value={formData.guests}
+            onChange={handleChange}
+            className={`w-full border rounded-xl px-4 py-3 ${
+              darkMode
+                ? "bg-slate-700 border-slate-600 text-white"
+                : "bg-white border-slate-300"
+            }`}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-2 font-medium">
+            Check-In Date
+          </label>
+
+          <input
+            type="date"
+            name="checkIn"
+            value={formData.checkIn}
+            onChange={handleChange}
+            className={`w-full border rounded-xl px-4 py-3 ${
+              darkMode
+                ? "bg-slate-700 border-slate-600 text-white"
+                : "bg-white border-slate-300"
+            }`}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-2 font-medium">
+            Check-Out Date
+          </label>
+
+          <input
+            type="date"
+            name="checkOut"
+            value={formData.checkOut}
+            onChange={handleChange}
+            className={`w-full border rounded-xl px-4 py-3 ${
+              darkMode
+                ? "bg-slate-700 border-slate-600 text-white"
+                : "bg-white border-slate-300"
+            }`}
+          />
+        </div>
+
+      </div>
+
+      <div className="mt-6">
+        <label className="block mb-2 font-medium">
+          Special Request
+        </label>
+
+        <textarea
+          name="specialRequest"
+          rows="4"
+          value={formData.specialRequest}
+          onChange={handleChange}
+          placeholder="Any special request..."
+          className={`w-full border rounded-xl px-4 py-3 ${
+            darkMode
+              ? "bg-slate-700 border-slate-600 text-white"
+              : "bg-white border-slate-300"
+          }`}
         />
       </div>
 
@@ -129,6 +283,7 @@ export default function BookingForm({ darkMode }) {
       >
         {loading ? "Submitting..." : "Submit Booking Request"}
       </button>
+
     </form>
   );
 }

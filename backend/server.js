@@ -6,6 +6,11 @@ import roomRoutes from "./routes/roomRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import availabilityRoutes from "./routes/availabilityRoutes.js";
 
+import {
+  notFound,
+  errorHandler,
+} from "./middleware/errorMiddleware.js";
+
 dotenv.config();
 
 const app = express();
@@ -29,13 +34,11 @@ app.use("/api/rooms", roomRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/availability", availabilityRoutes);
 
-// 404 Handler
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: "Route not found",
-  });
-});
+// 404 Middleware
+app.use(notFound);
+
+// Global Error Middleware
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
