@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import connectDB from "./config/db.js";
+
 import roomRoutes from "./routes/roomRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import availabilityRoutes from "./routes/availabilityRoutes.js";
@@ -12,6 +14,9 @@ import {
 } from "./middleware/errorMiddleware.js";
 
 dotenv.config();
+
+// Connect MongoDB
+connectDB();
 
 const app = express();
 
@@ -25,7 +30,8 @@ app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
     message: "Welcome to Trishul Homestay Direct Booking Engine API",
-    version: "1.0.0",
+    version: "2.0.0",
+    database: "MongoDB Atlas",
   });
 });
 
