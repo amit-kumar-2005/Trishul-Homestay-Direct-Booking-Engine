@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
@@ -15,12 +17,20 @@ const Register = () => {
 
   const [loading, setLoading] = useState(false);
 
+  // =========================
+  // Handle Input Change
+  // =========================
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
+
+  // =========================
+  // Register
+  // =========================
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,12 +40,13 @@ const Register = () => {
 
       await register(formData);
 
-      alert("Registration Successful");
+      toast.success("Registration Successful");
 
       navigate("/");
     } catch (error) {
-      alert(
-        error.response?.data?.message || "Registration Failed"
+      toast.error(
+        error.response?.data?.message ||
+          "Registration Failed"
       );
     } finally {
       setLoading(false);
@@ -51,7 +62,10 @@ const Register = () => {
           Create Account
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4"
+        >
 
           <input
             type="text"
@@ -84,9 +98,13 @@ const Register = () => {
           />
 
           <button
-            className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg"
+            type="submit"
+            disabled={loading}
+            className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white py-3 rounded-lg transition"
           >
-            {loading ? "Creating Account..." : "Register"}
+            {loading
+              ? "Creating Account..."
+              : "Register"}
           </button>
 
         </form>
@@ -97,7 +115,7 @@ const Register = () => {
 
           <Link
             to="/login"
-            className="text-green-600 ml-2"
+            className="text-green-600 ml-2 font-medium"
           >
             Login
           </Link>

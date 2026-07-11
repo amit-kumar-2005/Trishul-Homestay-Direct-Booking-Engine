@@ -10,6 +10,7 @@ import ComponentDemo from "../pages/ComponentDemo";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import GoogleCallback from "../pages/GoogleCallback";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -43,6 +44,8 @@ export default function AppRoutes() {
         />
       </Route>
 
+      {/* Authentication */}
+
       <Route
         path="/login"
         element={<Login />}
@@ -51,6 +54,13 @@ export default function AppRoutes() {
       <Route
         path="/register"
         element={<Register />}
+      />
+
+      {/* Google OAuth Callback */}
+
+      <Route
+        path="/auth/google/callback"
+        element={<GoogleCallback />}
       />
     </Routes>
   );

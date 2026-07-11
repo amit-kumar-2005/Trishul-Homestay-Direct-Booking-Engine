@@ -29,7 +29,7 @@ export default function BookingForm({ darkMode }) {
         if (response.data.data.length > 0) {
           setFormData((prev) => ({
             ...prev,
-            roomId: response.data.data[0].id,
+            roomId: response.data.data[0]._id,
           }));
         }
       } catch (err) {
@@ -69,7 +69,7 @@ export default function BookingForm({ darkMode }) {
       setLoading(true);
 
       const response = await api.post("/bookings", {
-        roomId: Number(formData.roomId),
+        roomId: formData.roomId,
         guestName: formData.guestName,
         email: formData.email,
         phone: formData.phone,
@@ -85,7 +85,7 @@ export default function BookingForm({ darkMode }) {
         guestName: "",
         email: "",
         phone: "",
-        roomId: rooms.length ? rooms[0].id : "",
+        roomId: rooms.length ? rooms[0]._id : "",
         guests: 1,
         checkIn: "",
         checkOut: "",
@@ -193,7 +193,7 @@ export default function BookingForm({ darkMode }) {
             }`}
           >
             {rooms.map((room) => (
-              <option key={room.id} value={room.id}>
+              <option key={room._id} value={room._id}>
                 {room.name}
               </option>
             ))}

@@ -10,15 +10,36 @@ import {
 
 import { protect } from "../middleware/authMiddleware.js";
 
+import {
+  registerValidator,
+  loginValidator,
+} from "../validators/authValidator.js";
+
+import { validate } from "../middleware/validationMiddleware.js";
+
+import { authLimiter } from "../middleware/rateLimitMiddleware.js";
+
 const router = express.Router();
 
 // ======================================
 // Public Routes
 // ======================================
 
-router.post("/register", registerUser);
+router.post(
+  "/register",
+  authLimiter,
+  registerValidator,
+  validate,
+  registerUser
+);
 
-router.post("/login", loginUser);
+router.post(
+  "/login",
+  authLimiter,
+  loginValidator,
+  validate,
+  loginUser
+);
 
 // ======================================
 // Google OAuth
@@ -35,20 +56,14 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     session: false,
-    failureRedirect: "/login",
+    failureRedirect: "http://localhost:5173/login",
   }),
   (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: "Google Login Successful",
-      token: req.user.token,
-      data: {
-        _id: req.user._id,
-        name: req.user.name,
-        email: req.user.email,
-        role: req.user.role,
-      },
-    });
+    // Redirect to React app with JWT token
+
+    res.redirect(
+      `http://localhost:5173/auth/google/callback?token=${req.user.token}`
+    );
   }
 );
 
