@@ -5,10 +5,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-  "dev": "nodemon server.js",
-  "start": "node server.js",
-  "seed": "node seeders/roomSeeder.js"
- },
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "seed": "node seeders/roomSeeder.js"
+  },
   "keywords": [
     "express",
     "backend",
@@ -18,10 +18,17 @@
   "author": "Amit Kumar",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongoose": "^9.7.3"
+    "express-rate-limit": "^8.5.2",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.3",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

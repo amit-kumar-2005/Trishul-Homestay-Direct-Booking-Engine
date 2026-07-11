@@ -8,17 +8,20 @@ import Availability from "../pages/Availability";
 import Booking from "../pages/Booking";
 import ComponentDemo from "../pages/ComponentDemo";
 
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+
+import ProtectedRoute from "./ProtectedRoute";
+
 export default function AppRoutes() {
+  console.log("AppRoutes Rendered");
+
   return (
     <Routes>
       <Route element={<MainLayout />}>
-
         <Route path="/" element={<Home />} />
 
-        <Route
-          path="/rooms"
-          element={<Rooms />}
-        />
+        <Route path="/rooms" element={<Rooms />} />
 
         <Route
           path="/availability"
@@ -27,15 +30,28 @@ export default function AppRoutes() {
 
         <Route
           path="/booking"
-          element={<Booking />}
+          element={
+            <ProtectedRoute>
+              <Booking />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/components"
           element={<ComponentDemo />}
         />
-
       </Route>
+
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
+      <Route
+        path="/register"
+        element={<Register />}
+      />
     </Routes>
   );
 }
