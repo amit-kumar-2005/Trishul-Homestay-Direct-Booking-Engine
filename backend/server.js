@@ -10,6 +10,7 @@ import authRoutes from "./routes/authRoutes.js";
 import roomRoutes from "./routes/roomRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import availabilityRoutes from "./routes/availabilityRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
 
 import {
   notFound,
@@ -51,27 +52,45 @@ app.use(passport.session());
 
 const PORT = process.env.PORT || 5000;
 
+// ======================================
 // Home Route
+// ======================================
+
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
     message: "Welcome to Trishul Homestay Direct Booking Engine API",
     version: "2.0.0",
     database: "MongoDB Atlas",
-    authentication: "JWT + Google OAuth",
+    authentication: "JWT + Google OAuth + Gemini AI",
   });
 });
 
+// ======================================
 // API Routes
+// ======================================
+
 app.use("/api/auth", authRoutes);
+
 app.use("/api/rooms", roomRoutes);
+
 app.use("/api/bookings", bookingRoutes);
+
 app.use("/api/availability", availabilityRoutes);
 
+// AI Routes
+app.use("/api/ai", aiRoutes);
+
+// ======================================
 // 404 Middleware
+// ======================================
+
 app.use(notFound);
 
+// ======================================
 // Global Error Middleware
+// ======================================
+
 app.use(errorHandler);
 
 app.listen(PORT, () => {
