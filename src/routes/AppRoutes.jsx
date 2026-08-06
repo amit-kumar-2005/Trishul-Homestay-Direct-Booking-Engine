@@ -1,33 +1,81 @@
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
+
+// =========================================
+// Pages
+// =========================================
 
 import Home from "../pages/Home";
 import Rooms from "../pages/Rooms";
 import Availability from "../pages/Availability";
 import Booking from "../pages/Booking";
+import BookingDetails from "../pages/BookingDetails";
+import Dashboard from "../pages/Dashboard";
+import AdminDashboard from "../pages/AdminDashboard";
 import ComponentDemo from "../pages/ComponentDemo";
+
+// =========================================
+// Authentication Pages
+// =========================================
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import GoogleCallback from "../pages/GoogleCallback";
 
+// =========================================
+// Route Guards
+// =========================================
+
 import ProtectedRoute from "./ProtectedRoute";
+import AdminRoute from "./AdminRoute";
+
+// =========================================
+// Application Routes
+// =========================================
 
 export default function AppRoutes() {
-  console.log("AppRoutes Rendered");
-
   return (
     <Routes>
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
+      {/* =========================================
+          Main Layout Routes
+      ========================================= */}
 
-        <Route path="/rooms" element={<Rooms />} />
+      <Route element={<MainLayout />}>
+
+        {/* =======================================
+            Home
+        ======================================= */}
+
+        <Route
+          path="/"
+          element={<Home />}
+        />
+
+        {/* =======================================
+            Rooms
+        ======================================= */}
+
+        <Route
+          path="/rooms"
+          element={<Rooms />}
+        />
+
+        {/* =======================================
+            Availability
+        ======================================= */}
 
         <Route
           path="/availability"
           element={<Availability />}
         />
+
+        {/* =======================================
+            Protected Booking Route
+        ======================================= */}
 
         <Route
           path="/booking"
@@ -38,18 +86,69 @@ export default function AppRoutes() {
           }
         />
 
+        {/* =======================================
+            Protected Booking Details Route
+        ======================================= */}
+
+        <Route
+          path="/booking/:id"
+          element={
+            <ProtectedRoute>
+              <BookingDetails />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* =======================================
+            Protected User Dashboard
+        ======================================= */}
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* =======================================
+            Protected Admin Dashboard
+            Admin Role Only
+        ======================================= */}
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
+        {/* =======================================
+            Component Demo
+        ======================================= */}
+
         <Route
           path="/components"
           element={<ComponentDemo />}
         />
+
       </Route>
 
-      {/* Authentication */}
+      {/* =========================================
+          Authentication Routes
+      ========================================= */}
+
+      {/* Login */}
 
       <Route
         path="/login"
         element={<Login />}
       />
+
+      {/* Register */}
 
       <Route
         path="/register"
@@ -62,6 +161,7 @@ export default function AppRoutes() {
         path="/auth/google/callback"
         element={<GoogleCallback />}
       />
+
     </Routes>
   );
 }

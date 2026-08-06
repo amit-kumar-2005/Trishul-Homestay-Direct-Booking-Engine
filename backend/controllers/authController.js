@@ -5,6 +5,7 @@ import generateToken from "../utils/generateToken.js";
 // Register User
 // POST /api/auth/register
 // ======================================
+
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -47,13 +48,17 @@ export const registerUser = async (req, res) => {
 // Login User
 // POST /api/auth/login
 // ======================================
+
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
 
-    if (user && (await user.matchPassword(password))) {
+    if (
+      user &&
+      (await user.matchPassword(password))
+    ) {
       return res.status(200).json({
         success: true,
         message: "Login successful",
@@ -83,9 +88,15 @@ export const loginUser = async (req, res) => {
 // Get Current User
 // GET /api/auth/me
 // ======================================
-export const getCurrentUser = async (req, res) => {
+
+export const getCurrentUser = async (
+  req,
+  res
+) => {
   try {
-    const user = await User.findById(req.user._id).select("-password");
+    const user = await User.findById(
+      req.user._id
+    ).select("-password");
 
     res.status(200).json({
       success: true,
@@ -103,6 +114,7 @@ export const getCurrentUser = async (req, res) => {
 // Logout User
 // POST /api/auth/logout
 // ======================================
+
 export const logoutUser = async (req, res) => {
   res.status(200).json({
     success: true,

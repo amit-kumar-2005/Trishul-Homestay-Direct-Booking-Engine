@@ -25,6 +25,7 @@ const router = express.Router();
 // Public Routes
 // ======================================
 
+// Register User
 router.post(
   "/register",
   authLimiter,
@@ -33,6 +34,7 @@ router.post(
   registerUser
 );
 
+// Login User
 router.post(
   "/login",
   authLimiter,
@@ -45,6 +47,7 @@ router.post(
 // Google OAuth
 // ======================================
 
+// Start Google Login
 router.get(
   "/google",
   passport.authenticate("google", {
@@ -52,6 +55,7 @@ router.get(
   })
 );
 
+// Google OAuth Callback
 router.get(
   "/google/callback",
   passport.authenticate("google", {
@@ -60,7 +64,6 @@ router.get(
   }),
   (req, res) => {
     // Redirect to React app with JWT token
-
     res.redirect(
       `http://localhost:5173/auth/google/callback?token=${req.user.token}`
     );
@@ -71,8 +74,18 @@ router.get(
 // Protected Routes
 // ======================================
 
-router.get("/me", protect, getCurrentUser);
+// Get Current Logged-in User
+router.get(
+  "/me",
+  protect,
+  getCurrentUser
+);
 
-router.post("/logout", protect, logoutUser);
+// Logout User
+router.post(
+  "/logout",
+  protect,
+  logoutUser
+);
 
 export default router;
