@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -282,6 +283,8 @@ export default function Dashboard() {
       setSuccessMessage(
         "Your booking has been cancelled successfully."
       );
+
+      toast.success("Your booking has been cancelled successfully.");
 
       setCancelModalOpen(false);
       setSelectedBooking(null);

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import {
   CalendarDays,
@@ -135,10 +136,11 @@ export default function BookingForm({ darkMode }) {
   // ==========================================
 
   useEffect(() => {
-    if (!location.state) {
-      return;
-    }
+  if (!location.state) {
+    return;
+  }
 
+  const timer = setTimeout(() => {
     setFormData((prev) => ({
       ...prev,
 
@@ -158,7 +160,12 @@ export default function BookingForm({ darkMode }) {
         location.state.checkOut ||
         prev.checkOut,
     }));
-  }, [location.state]);
+  }, 0);
+
+  return () => {
+    clearTimeout(timer);
+  };
+}, [location.state]);
 
   // ==========================================
   // Handle Input Change
@@ -344,6 +351,11 @@ export default function BookingForm({ darkMode }) {
         response.data?.message ||
           "Booking request submitted successfully."
       );
+
+      toast.success(
+  response.data?.message ||
+  "Booking request submitted successfully."
+);
 
       // ========================================
       // Reset Form After Successful Booking
