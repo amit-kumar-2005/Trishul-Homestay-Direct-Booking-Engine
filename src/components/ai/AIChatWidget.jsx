@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 import {
   MessageCircle,
   X,
@@ -53,7 +54,12 @@ I can help you with:
   const handleSendMessage = async () => {
     const trimmedInput = input.trim();
 
-    if (!trimmedInput || loading) return;
+    if (loading) return;
+
+if (!trimmedInput) {
+  toast.error("Please enter a message first.");
+  return;
+}
 
     const userMessage = {
       id: Date.now(),

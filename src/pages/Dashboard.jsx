@@ -203,8 +203,14 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+  const timer = setTimeout(() => {
     fetchMyBookings();
-  }, []);
+  }, 0);
+
+  return () => {
+    clearTimeout(timer);
+  };
+}, []);
 
   // ==========================================
   // Open Cancel Confirmation Modal
@@ -956,7 +962,7 @@ export default function Dashboard() {
                           <div className="flex flex-col sm:flex-row gap-3">
 
                             {/* View Details */}
-
+                            
                             <Link
                               to={`/booking/${booking._id}`}
                               className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-teal-700 text-white hover:bg-teal-800 transition font-semibold"
