@@ -16,6 +16,7 @@ import Booking from "../pages/Booking";
 import BookingDetails from "../pages/BookingDetails";
 import Dashboard from "../pages/Dashboard";
 import AdminDashboard from "../pages/AdminDashboard";
+import AdminRooms from "../pages/AdminRooms";
 import ComponentDemo from "../pages/ComponentDemo";
 
 // =========================================
@@ -114,7 +115,6 @@ export default function AppRoutes() {
 
         {/* =======================================
             Protected Admin Dashboard
-            Admin Role Only
         ======================================= */}
 
         <Route
@@ -122,6 +122,19 @@ export default function AppRoutes() {
           element={
             <AdminRoute>
               <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
+        {/* =======================================
+            Protected Admin Rooms
+        ======================================= */}
+
+        <Route
+          path="/admin/rooms"
+          element={
+            <AdminRoute>
+              <AdminRooms />
             </AdminRoute>
           }
         />
@@ -141,21 +154,15 @@ export default function AppRoutes() {
           Authentication Routes
       ========================================= */}
 
-      {/* Login */}
-
       <Route
         path="/login"
         element={<Login />}
       />
 
-      {/* Register */}
-
       <Route
         path="/register"
         element={<Register />}
       />
-
-      {/* Google OAuth Callback */}
 
       <Route
         path="/auth/google/callback"

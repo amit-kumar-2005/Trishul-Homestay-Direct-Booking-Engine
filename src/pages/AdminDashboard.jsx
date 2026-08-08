@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 import api from "../services/api";
@@ -95,6 +96,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState("");
+  const [actionLoading, setActionLoading] = useState("");
 
   // ==========================================
   // Fetch Admin Dashboard
@@ -130,12 +132,49 @@ export default function AdminDashboard() {
   };
 
   // ==========================================
+// Update Booking Status
+// ==========================================
+
+const updateBookingStatus = async (
+  bookingId,
+  status
+) => {
+  try {
+    setActionLoading(bookingId);
+
+    await api.put(
+      `/bookings/${bookingId}/status`,
+      {
+        status,
+      }
+    );
+
+    toast.success(
+      `Booking ${status.toLowerCase()} successfully`
+    );
+
+    await fetchDashboard();
+  } catch (error) {
+    toast.error(
+      error.response?.data?.message ||
+        "Failed to update booking status."
+    );
+  } finally {
+    setActionLoading("");
+  }
+};
+
+  // ==========================================
   // Initial Load
   // ==========================================
 
   useEffect(() => {
-    fetchDashboard();
-  }, []);
+  const loadDashboard = async () => {
+    await fetchDashboard();
+  };
+
+  loadDashboard();
+}, []);
 
   // ==========================================
   // Loading State
@@ -286,15 +325,26 @@ export default function AdminDashboard() {
               </p>
             </div>
 
-            <button
-              type="button"
-              onClick={fetchDashboard}
-              className="inline-flex items-center justify-center gap-2 self-start lg:self-center rounded-xl bg-white text-slate-900 px-5 py-3 font-semibold hover:bg-slate-100 transition"
-            >
-              <RefreshCw size={18} />
+            <div className="flex flex-wrap gap-3 self-start lg:self-center">
 
-              Refresh Dashboard
-            </button>
+  <Link
+    to="/admin/rooms"
+    className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white px-5 py-3 font-semibold transition"
+  >
+    <BedDouble size={18} />
+    Manage Rooms
+  </Link>
+
+  <button
+    type="button"
+    onClick={fetchDashboard}
+    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-slate-900 px-5 py-3 font-semibold hover:bg-slate-100 transition"
+  >
+    <RefreshCw size={18} />
+    Refresh Dashboard
+  </button>
+
+</div>
           </div>
         </section>
 
@@ -732,6 +782,61 @@ export default function AdminDashboard() {
 
                           View Details
                         </Link>
+                        {booking.status === "Pending" && (
+  <div className="mt-3 flex gap-2">
+    <button
+      onClick={() =>
+        updateBookingStatus(booking._id, "Confirmed")
+      }
+      disabled={actionLoading === booking._id}
+      className="rounded-lg bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-green-700 disabled:opacity-50"
+    >
+      {actionLoading === booking._id
+        ? "Processing..."
+        : "Confirm"}
+    </button>
+
+    <button
+      onClick={() =>
+        updateBookingStatus(booking._id, "Cancelled")
+      }
+      disabled={actionLoading === booking._id}
+      className="rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+    >
+      {actionLoading === booking._id
+        ? "Processing..."
+        : "Cancel"}
+    </button>
+  </div>
+)}
+
+{booking.status === "Confirmed" && (
+  <div className="mt-3 flex gap-2">
+    <button
+      onClick={() =>
+        updateBookingStatus(booking._id, "Completed")
+      }
+      disabled={actionLoading === booking._id}
+      className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+    >
+      {actionLoading === booking._id
+        ? "Processing..."
+        : "Complete"}
+    </button>
+
+    <button
+      onClick={() =>
+        updateBookingStatus(booking._id, "Cancelled")
+      }
+      disabled={actionLoading === booking._id}
+      className="rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+    >
+      {actionLoading === booking._id
+        ? "Processing..."
+        : "Cancel"}
+    </button>
+  </div>
+)}
 
                         <p className="mt-2 text-center text-xs text-slate-400">
                           Created{" "}
