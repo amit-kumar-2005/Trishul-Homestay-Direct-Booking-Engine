@@ -187,19 +187,19 @@ js/booking.js
 Find:
 
 ```javascript
-const WHATSAPP_NUMBER = "919876543210";
+const WHATSAPP_NUMBER = "917462854190";
 ```
 
 Replace:
 
 ```javascript
-const WHATSAPP_NUMBER = "91YOURNUMBER";
+const WHATSAPP_NUMBER = "917462854190";
 ```
 
 Example:
 
 ```javascript
-const WHATSAPP_NUMBER = "919876543210";
+const WHATSAPP_NUMBER = "917462854190";
 ```
 
 Save file.
@@ -285,7 +285,7 @@ booking.html
 Search:
 
 ```text
-+91 9876543210
++91 7462854190
 ```
 
 Replace with actual number.
@@ -384,7 +384,7 @@ js/booking.js
 Verify WhatsApp number format:
 
 ```text
-919876543210
+917462854190
 ```
 
 No spaces.

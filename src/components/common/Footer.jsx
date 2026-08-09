@@ -55,7 +55,7 @@ export default function Footer() {
               darkMode ? "text-slate-300" : "text-slate-600"
             }`}
           >
-            <li>+91 9876543210</li>
+            <li>+91 7462854190</li>
             <li>info@trishulhomestay.com</li>
             <li>Uttarakhand, India</li>
           </ul>
