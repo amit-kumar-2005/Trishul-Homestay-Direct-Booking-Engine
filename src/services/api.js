@@ -32,12 +32,13 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => response,
+
   (error) => {
     if (error.response?.status === 401) {
-      // Remove expired token
+      // Remove expired/invalid token
       localStorage.removeItem("token");
 
-      // Avoid showing toast on login/register failure
+      // Avoid redirect loop on authentication pages
       const currentPath = window.location.pathname;
 
       if (
@@ -48,7 +49,6 @@ api.interceptors.response.use(
           "Your session has expired. Please login again."
         );
 
-        // Redirect after a short delay
         setTimeout(() => {
           window.location.href = "/login";
         }, 1500);

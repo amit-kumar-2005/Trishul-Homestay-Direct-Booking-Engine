@@ -279,7 +279,7 @@ npm run dev
 Backend URL
 
 ```
-http://localhost:5000
+https://trishul-homestay-direct-booking-engine-1.onrender.com
 ```
 
 ---
