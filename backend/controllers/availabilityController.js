@@ -151,8 +151,8 @@ export const checkAvailability = async (req, res) => {
       roomId: { $in: roomIds },
 
       status: {
-        $ne: "Cancelled",
-      },
+  $in: ["Pending", "Confirmed"],
+},
 
       checkIn: {
         $lt: checkOutDate,

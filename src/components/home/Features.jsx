@@ -37,7 +37,7 @@ export default function Features() {
                   : "bg-white text-slate-900"
               }`}
             >
-              <h3 className="text-3xl font-bold text-teal-700">
+              <h3 className="text-xl sm:text-3xl font-bold leading-tight text-teal-700 break-words">
                 {item.title}
               </h3>
 

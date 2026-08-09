@@ -42,7 +42,7 @@ const Register = () => {
 
       toast.success("Registration Successful");
 
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       toast.error(
         error.response?.data?.message ||

@@ -1,3 +1,6 @@
+import standardRoom from "../assets/images/room-standard.jpg";
+import deluxeRoom from "../assets/images/room-deluxe.jpg";
+import familyRoom from "../assets/images/room-family.jpg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,6 +18,12 @@ import {
 
 import { useTheme } from "../context/ThemeContext";
 import api from "../services/api";
+
+const roomImages = {
+  "/images/standard-room.jpg": standardRoom,
+  "/images/deluxe-room.jpg": deluxeRoom,
+  "/images/family-suite.jpg": familyRoom,
+};
 
 export default function Availability() {
   const { darkMode } = useTheme();
@@ -502,7 +511,7 @@ export default function Availability() {
                     <div className="h-56 overflow-hidden bg-slate-200">
                       {room.image ? (
                         <img
-                          src={room.image}
+                          src={roomImages[room.image] || standardRoom}
                           alt={room.name}
                           className="w-full h-full object-cover transition duration-500 hover:scale-105"
                         />
