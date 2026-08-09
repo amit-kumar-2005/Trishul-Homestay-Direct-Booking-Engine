@@ -136,7 +136,10 @@ Answer:
     console.error("Gemini AI Error:", error);
 
     throw new Error(
-      error.message || "Failed to generate AI response."
+      error.message || "Failed to generate AI response.",
+      {
+        cause: error,
+      }
     );
   }
 };
