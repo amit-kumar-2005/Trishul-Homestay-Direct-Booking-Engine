@@ -394,6 +394,84 @@ All REST APIs were successfully tested using **Postman**.
 
 ---
 
+## 🚀 Live Deployment
+
+### Frontend
+Live Frontend: https://trishul-homestay-direct-booking-eng.vercel.app
+
+### Backend API
+Live Backend API: https://trishul-homestay-direct-booking-engine-1.onrender.com
+
+### 🛠️ Tech Stack
+
+#### Frontend
+- React.js
+- Vite
+- Tailwind CSS
+- React Router
+- JavaScript
+- Responsive UI
+
+#### Backend
+- Node.js
+- Express.js
+- REST API
+- JWT Authentication
+- CORS
+
+#### Database
+- MongoDB Atlas
+
+#### Deployment
+- Vercel — Frontend
+- Render — Backend
+- MongoDB Atlas — Database
+
+#### AI Integration
+- Google Gemini API
+
+### 🔐 Authentication & Authorization
+- User Registration
+- User Login
+- JWT-based authentication
+- Admin authentication
+- Role-based access control
+
+### ✨ Core Features
+- Responsive homepage
+- Room listing and room details
+- Room availability
+- User registration and login
+- Admin dashboard
+- Room CRUD operations
+- Booking functionality
+- User dashboard
+- WhatsApp contact integration
+- Light/Dark theme support
+- AI-assisted functionality
+
+### ⚠️ Known Limitations on Free Tier
+
+- The Render free-tier backend may spin down after a period of inactivity.
+- The first request after inactivity may take some time while the backend wakes up.
+- Vercel and Render deployments depend on their respective free-tier limits.
+- MongoDB Atlas availability and limits depend on the selected free-tier configuration.
+
+### 🧪 Production Testing
+
+The deployed application has been tested on the live production URL.
+
+Verified functionality:
+- Frontend pages load successfully
+- User registration works
+- User login works
+- Admin login works
+- Room CRUD operations work
+- Database persistence works
+- User booking functionality works
+- Role-based access control works
+- Production frontend communicates with the Render backend successfully
+
 # Author
 
 **Amit Kumar**
