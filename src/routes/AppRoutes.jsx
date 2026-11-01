@@ -1,3 +1,4 @@
+
 import {
   Routes,
   Route,
@@ -11,6 +12,7 @@ import MainLayout from "../layouts/MainLayout";
 
 import Home from "../pages/Home";
 import Rooms from "../pages/Rooms";
+import RoomDetails from "../pages/RoomDetails";
 import Availability from "../pages/Availability";
 import Booking from "../pages/Booking";
 import BookingDetails from "../pages/BookingDetails";
@@ -41,6 +43,7 @@ import AdminRoute from "./AdminRoute";
 export default function AppRoutes() {
   return (
     <Routes>
+
       {/* =========================================
           Main Layout Routes
       ========================================= */}
@@ -63,6 +66,15 @@ export default function AppRoutes() {
         <Route
           path="/rooms"
           element={<Rooms />}
+        />
+
+        {/* =======================================
+            Individual Room Details
+        ======================================= */}
+
+        <Route
+          path="/rooms/:id"
+          element={<RoomDetails />}
         />
 
         {/* =======================================

@@ -1,8 +1,16 @@
+
 import aboutImage from "../../assets/images/about.jpg";
 import { useTheme } from "../../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
   const { darkMode } = useTheme();
+  const navigate = useNavigate();
+
+  const handleLearnMore = () => {
+    navigate("/rooms");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <section
@@ -13,7 +21,6 @@ export default function About() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
-
         <div className="grid lg:grid-cols-2 gap-14 items-center">
 
           {/* Image */}
@@ -27,7 +34,6 @@ export default function About() {
 
           {/* Content */}
           <div>
-
             <span className="text-teal-700 font-semibold uppercase tracking-wider">
               About Us
             </span>
@@ -44,9 +50,7 @@ export default function About() {
 
             <p
               className={`mt-6 text-lg leading-relaxed ${
-                darkMode
-                  ? "text-slate-300"
-                  : "text-slate-600"
+                darkMode ? "text-slate-300" : "text-slate-600"
               }`}
             >
               Trishul Homestay offers a peaceful retreat surrounded by
@@ -57,9 +61,7 @@ export default function About() {
 
             <p
               className={`mt-4 text-lg leading-relaxed ${
-                darkMode
-                  ? "text-slate-300"
-                  : "text-slate-600"
+                darkMode ? "text-slate-300" : "text-slate-600"
               }`}
             >
               By booking directly with us, guests enjoy better pricing,
@@ -67,102 +69,46 @@ export default function About() {
               without third-party commissions.
             </p>
 
+            {/* Highlights */}
             <div className="grid grid-cols-2 gap-6 mt-10">
-
-              <div
-                className={`p-5 rounded-2xl shadow-sm ${
-                  darkMode
-                    ? "bg-slate-800"
-                    : "bg-slate-50"
-                }`}
-              >
-                <h3 className="text-2xl font-bold text-teal-700">
-                  500+
-                </h3>
-                <p
-                  className={
-                    darkMode
-                      ? "text-slate-300"
-                      : "text-slate-600"
-                  }
+              {[
+                { value: "500+", label: "Happy Guests" },
+                { value: "0%", label: "OTA Commission" },
+                { value: "Eco", label: "Tourism Focus" },
+                { value: "24/7", label: "Guest Support" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className={`p-5 rounded-2xl shadow-sm ${
+                    darkMode ? "bg-slate-800" : "bg-slate-50"
+                  }`}
                 >
-                  Happy Guests
-                </p>
-              </div>
-
-              <div
-                className={`p-5 rounded-2xl shadow-sm ${
-                  darkMode
-                    ? "bg-slate-800"
-                    : "bg-slate-50"
-                }`}
-              >
-                <h3 className="text-2xl font-bold text-teal-700">
-                  0%
-                </h3>
-                <p
-                  className={
-                    darkMode
-                      ? "text-slate-300"
-                      : "text-slate-600"
-                  }
-                >
-                  OTA Commission
-                </p>
-              </div>
-
-              <div
-                className={`p-5 rounded-2xl shadow-sm ${
-                  darkMode
-                    ? "bg-slate-800"
-                    : "bg-slate-50"
-                }`}
-              >
-                <h3 className="text-2xl font-bold text-teal-700">
-                  Eco
-                </h3>
-                <p
-                  className={
-                    darkMode
-                      ? "text-slate-300"
-                      : "text-slate-600"
-                  }
-                >
-                  Tourism Focus
-                </p>
-              </div>
-
-              <div
-                className={`p-5 rounded-2xl shadow-sm ${
-                  darkMode
-                    ? "bg-slate-800"
-                    : "bg-slate-50"
-                }`}
-              >
-                <h3 className="text-2xl font-bold text-teal-700">
-                  24/7
-                </h3>
-                <p
-                  className={
-                    darkMode
-                      ? "text-slate-300"
-                      : "text-slate-600"
-                  }
-                >
-                  Guest Support
-                </p>
-              </div>
-
+                  <h3 className="text-2xl font-bold text-teal-700">
+                    {item.value}
+                  </h3>
+                  <p
+                    className={
+                      darkMode ? "text-slate-300" : "text-slate-600"
+                    }
+                  >
+                    {item.label}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            <button className="mt-10 bg-teal-700 hover:bg-teal-800 text-white px-8 py-4 rounded-full font-semibold transition">
+            {/* Learn More Button */}
+            <button
+              type="button"
+              onClick={handleLearnMore}
+              className="mt-10 bg-teal-700 hover:bg-teal-800
+                text-white px-8 py-4 rounded-full font-semibold
+                transition duration-300 hover:scale-105"
+            >
               Learn More
             </button>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

@@ -1,6 +1,10 @@
+
+import { useNavigate } from "react-router-dom";
 import heroImage from "../../assets/images/hero.jpg";
 
 export default function Hero() {
+  const navigate = useNavigate();
+
   return (
     <section
       className="relative min-h-screen bg-cover bg-top md:bg-center flex items-center"
@@ -36,11 +40,19 @@ export default function Hero() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
 
-          <button className="w-full sm:w-auto bg-teal-700 hover:bg-teal-800 transition duration-300 px-6 py-3 rounded-full font-semibold">
+          {/* Explore Rooms */}
+          <button
+            onClick={() => navigate("/rooms")}
+            className="w-full sm:w-auto bg-teal-700 hover:bg-teal-800 transition duration-300 px-6 py-3 rounded-full font-semibold"
+          >
             Explore Rooms
           </button>
 
-          <button className="w-full sm:w-auto border border-white hover:bg-white hover:text-black transition duration-300 px-6 py-3 rounded-full font-semibold">
+          {/* Check Availability */}
+          <button
+            onClick={() => navigate("/availability")}
+            className="w-full sm:w-auto border border-white hover:bg-white hover:text-black transition duration-300 px-6 py-3 rounded-full font-semibold"
+          >
             Check Availability
           </button>
 

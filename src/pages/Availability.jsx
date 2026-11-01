@@ -1,8 +1,11 @@
+
 import standardRoom from "../assets/images/room-standard.jpg";
 import deluxeRoom from "../assets/images/room-deluxe.jpg";
 import familyRoom from "../assets/images/room-family.jpg";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import {
   Search,
   Users,
@@ -19,6 +22,7 @@ import {
 import { useTheme } from "../context/ThemeContext";
 import api from "../services/api";
 
+// Room Images
 const roomImages = {
   "/images/standard-room.jpg": standardRoom,
   "/images/deluxe-room.jpg": deluxeRoom,
@@ -28,15 +32,20 @@ const roomImages = {
 export default function Availability() {
   const { darkMode } = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Receive data from Home Page
+  const bookingData = location.state || {};
 
   // ==========================================
   // Form State
   // ==========================================
 
   const [formData, setFormData] = useState({
-    checkIn: "",
-    checkOut: "",
-    guests: "1",
+    checkIn: bookingData.checkIn || "",
+    checkOut: bookingData.checkOut || "",
+    guests: String(bookingData.guests || "1"),
+    roomType: bookingData.roomType || "All Rooms",
   });
 
   // ==========================================
@@ -78,6 +87,8 @@ export default function Availability() {
     }));
 
     setError("");
+    setMessage("");
+    setHasSearched(false);
   };
 
   // ==========================================
@@ -117,10 +128,7 @@ export default function Availability() {
 
     const guestCount = Number(formData.guests);
 
-    if (
-      !Number.isInteger(guestCount) ||
-      guestCount < 1
-    ) {
+    if (!Number.isInteger(guestCount) || guestCount < 1) {
       setError("Please select a valid number of guests.");
       return false;
     }
@@ -158,7 +166,20 @@ export default function Availability() {
 
       const responseData = response.data;
 
-      setAvailableRooms(responseData.data || []);
+      // Rooms returned by backend
+      const rooms = responseData.data || [];
+
+      // Filter rooms according to selected room type
+      const filteredRooms =
+        formData.roomType === "All Rooms"
+          ? rooms
+          : rooms.filter((room) =>
+              room.name
+                ?.toLowerCase()
+                .includes(formData.roomType.toLowerCase())
+            );
+
+      setAvailableRooms(filteredRooms);
 
       setMessage(
         responseData.message ||
@@ -167,10 +188,7 @@ export default function Availability() {
 
       setHasSearched(true);
     } catch (err) {
-      console.error(
-        "Availability Check Error:",
-        err
-      );
+      console.error("Availability Check Error:", err);
 
       setAvailableRooms([]);
       setHasSearched(true);
@@ -201,6 +219,29 @@ export default function Availability() {
   };
 
   // ==========================================
+  // Reset Search
+  // ==========================================
+
+  const handleReset = () => {
+    setFormData({
+      checkIn: "",
+      checkOut: "",
+      guests: "1",
+      roomType: "All Rooms",
+    });
+
+    setAvailableRooms([]);
+    setHasSearched(false);
+    setMessage("");
+    setError("");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // ==========================================
   // UI
   // ==========================================
 
@@ -214,9 +255,7 @@ export default function Availability() {
     >
       <div className="max-w-7xl mx-auto">
 
-        {/* ======================================
-            Page Heading
-        ====================================== */}
+        {/* Page Heading */}
 
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-2 text-teal-600 font-semibold uppercase tracking-wider">
@@ -226,9 +265,7 @@ export default function Availability() {
 
           <h1
             className={`text-3xl md:text-5xl font-bold mt-3 ${
-              darkMode
-                ? "text-white"
-                : "text-slate-900"
+              darkMode ? "text-white" : "text-slate-900"
             }`}
           >
             Check Room Availability
@@ -236,20 +273,15 @@ export default function Availability() {
 
           <p
             className={`mt-4 max-w-2xl mx-auto leading-7 ${
-              darkMode
-                ? "text-slate-300"
-                : "text-slate-600"
+              darkMode ? "text-slate-300" : "text-slate-600"
             }`}
           >
-            Select your preferred dates and number of
-            guests to find rooms available for your stay
-            at Trishul Homestay.
+            Select your preferred dates, room type and number
+            of guests to find available rooms at Trishul Homestay.
           </p>
         </div>
 
-        {/* ======================================
-            Search Form
-        ====================================== */}
+        {/* Search Form */}
 
         <form
           onSubmit={handleCheckAvailability}
@@ -259,7 +291,7 @@ export default function Availability() {
               : "bg-white border-slate-200"
           }`}
         >
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
             {/* Check-In */}
 
@@ -268,11 +300,7 @@ export default function Availability() {
                 htmlFor="checkIn"
                 className="flex items-center gap-2 mb-2 font-semibold"
               >
-                <CalendarDays
-                  size={18}
-                  className="text-teal-600"
-                />
-
+                <CalendarDays size={18} className="text-teal-600" />
                 Check-In
               </label>
 
@@ -299,11 +327,7 @@ export default function Availability() {
                 htmlFor="checkOut"
                 className="flex items-center gap-2 mb-2 font-semibold"
               >
-                <CalendarDays
-                  size={18}
-                  className="text-teal-600"
-                />
-
+                <CalendarDays size={18} className="text-teal-600" />
                 Check-Out
               </label>
 
@@ -330,11 +354,7 @@ export default function Availability() {
                 htmlFor="guests"
                 className="flex items-center gap-2 mb-2 font-semibold"
               >
-                <Users
-                  size={18}
-                  className="text-teal-600"
-                />
-
+                <Users size={18} className="text-teal-600" />
                 Guests
               </label>
 
@@ -357,9 +377,38 @@ export default function Availability() {
                 <option value="5">5 Guests</option>
               </select>
             </div>
+
+            {/* Room Type */}
+
+            <div>
+              <label
+                htmlFor="roomType"
+                className="flex items-center gap-2 mb-2 font-semibold"
+              >
+                <BedDouble size={18} className="text-teal-600" />
+                Room Type
+              </label>
+
+              <select
+                id="roomType"
+                name="roomType"
+                value={formData.roomType}
+                onChange={handleChange}
+                className={`w-full border rounded-xl px-4 py-3 outline-none transition focus:ring-2 focus:ring-teal-500 ${
+                  darkMode
+                    ? "bg-slate-700 border-slate-600 text-white"
+                    : "bg-white border-slate-300 text-slate-900"
+                }`}
+              >
+                <option value="All Rooms">All Rooms</option>
+                <option value="Standard Room">Standard Room</option>
+                <option value="Deluxe Cottage">Deluxe Cottage</option>
+                <option value="Family Suite">Family Suite</option>
+              </select>
+            </div>
           </div>
 
-          {/* Error */}
+          {/* Error Message */}
 
           {error && (
             <div
@@ -369,11 +418,7 @@ export default function Availability() {
                   : "bg-red-50 border-red-200 text-red-700"
               }`}
             >
-              <AlertCircle
-                size={20}
-                className="shrink-0 mt-0.5"
-              />
-
+              <AlertCircle size={20} className="shrink-0 mt-0.5" />
               <p>{error}</p>
             </div>
           )}
@@ -387,26 +432,19 @@ export default function Availability() {
           >
             {loading ? (
               <>
-                <Loader2
-                  size={20}
-                  className="animate-spin"
-                />
-
+                <Loader2 size={20} className="animate-spin" />
                 Checking Availability...
               </>
             ) : (
               <>
                 <Search size={20} />
-
                 Check Availability
               </>
             )}
           </button>
         </form>
 
-        {/* ======================================
-            Loading Result
-        ====================================== */}
+        {/* Loading Result */}
 
         {loading && (
           <div className="py-16 flex flex-col items-center justify-center">
@@ -417,9 +455,7 @@ export default function Availability() {
 
             <p
               className={`mt-4 ${
-                darkMode
-                  ? "text-slate-300"
-                  : "text-slate-600"
+                darkMode ? "text-slate-300" : "text-slate-600"
               }`}
             >
               Searching for available rooms...
@@ -427,9 +463,7 @@ export default function Availability() {
           </div>
         )}
 
-        {/* ======================================
-            Search Results
-        ====================================== */}
+        {/* Search Results */}
 
         {!loading &&
           hasSearched &&
@@ -443,15 +477,12 @@ export default function Availability() {
                 <div>
                   <div className="flex items-center gap-2 text-teal-600 font-semibold mb-2">
                     <CheckCircle2 size={20} />
-
                     Rooms Available
                   </div>
 
                   <h2
                     className={`text-2xl md:text-3xl font-bold ${
-                      darkMode
-                        ? "text-white"
-                        : "text-slate-900"
+                      darkMode ? "text-white" : "text-slate-900"
                     }`}
                   >
                     Available Rooms
@@ -459,9 +490,7 @@ export default function Availability() {
 
                   <p
                     className={`mt-2 ${
-                      darkMode
-                        ? "text-slate-300"
-                        : "text-slate-600"
+                      darkMode ? "text-slate-300" : "text-slate-600"
                     }`}
                   >
                     {message}
@@ -488,9 +517,11 @@ export default function Availability() {
                   {" • "}
 
                   {formData.guests}{" "}
-                  {Number(formData.guests) === 1
-                    ? "Guest"
-                    : "Guests"}
+                  {Number(formData.guests) === 1 ? "Guest" : "Guests"}
+
+                  {" • "}
+
+                  {formData.roomType}
                 </div>
               </div>
 
@@ -533,9 +564,7 @@ export default function Availability() {
                     <div className="p-6">
                       <h3
                         className={`text-xl font-bold ${
-                          darkMode
-                            ? "text-white"
-                            : "text-slate-900"
+                          darkMode ? "text-white" : "text-slate-900"
                         }`}
                       >
                         {room.name}
@@ -617,9 +646,7 @@ export default function Availability() {
                             />
 
                             <span className="text-2xl font-bold text-teal-600">
-                              {Number(
-                                room.price || 0
-                              ).toLocaleString(
+                              {Number(room.price || 0).toLocaleString(
                                 "en-IN"
                               )}
                             </span>
@@ -641,13 +668,10 @@ export default function Availability() {
 
                       <button
                         type="button"
-                        onClick={() =>
-                          handleBookRoom(room)
-                        }
+                        onClick={() => handleBookRoom(room)}
                         className="mt-6 w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2"
                       >
                         Book This Room
-
                         <ArrowRight size={19} />
                       </button>
                     </div>
@@ -657,9 +681,7 @@ export default function Availability() {
             </div>
           )}
 
-        {/* ======================================
-            No Rooms Available
-        ====================================== */}
+        {/* No Rooms Available */}
 
         {!loading &&
           hasSearched &&
@@ -674,15 +696,10 @@ export default function Availability() {
             >
               <div
                 className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center ${
-                  darkMode
-                    ? "bg-slate-700"
-                    : "bg-slate-100"
+                  darkMode ? "bg-slate-700" : "bg-slate-100"
                 }`}
               >
-                <BedDouble
-                  size={30}
-                  className="text-teal-600"
-                />
+                <BedDouble size={30} className="text-teal-600" />
               </div>
 
               <h2 className="text-2xl font-bold mt-5">
@@ -691,9 +708,7 @@ export default function Availability() {
 
               <p
                 className={`mt-3 max-w-xl mx-auto ${
-                  darkMode
-                    ? "text-slate-300"
-                    : "text-slate-600"
+                  darkMode ? "text-slate-300" : "text-slate-600"
                 }`}
               >
                 {message ||
@@ -702,23 +717,7 @@ export default function Availability() {
 
               <button
                 type="button"
-                onClick={() => {
-                  setFormData({
-                    checkIn: "",
-                    checkOut: "",
-                    guests: "1",
-                  });
-
-                  setAvailableRooms([]);
-                  setHasSearched(false);
-                  setMessage("");
-                  setError("");
-
-                  window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                  });
-                }}
+                onClick={handleReset}
                 className="mt-6 border border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-6 py-3 rounded-xl font-semibold transition"
               >
                 Try Different Dates

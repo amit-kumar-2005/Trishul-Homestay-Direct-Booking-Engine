@@ -1,14 +1,26 @@
+
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 
 export default function CTA() {
   const { darkMode } = useTheme();
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    const contactSection = document.getElementById("contact");
+
+    if (contactSection) {
+      contactSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   return (
     <section
       className={`py-24 transition-colors duration-300 ${
-        darkMode
-          ? "bg-slate-950"
-          : "bg-teal-700"
+        darkMode ? "bg-slate-950" : "bg-teal-700"
       }`}
     >
       <div className="max-w-5xl mx-auto px-6 text-center text-white">
@@ -19,9 +31,7 @@ export default function CTA() {
 
         <p
           className={`text-lg md:text-xl max-w-3xl mx-auto ${
-            darkMode
-              ? "text-slate-300"
-              : "text-teal-100"
+            darkMode ? "text-slate-300" : "text-teal-100"
           }`}
         >
           Book directly with Trishul Homestay and enjoy
@@ -31,11 +41,19 @@ export default function CTA() {
 
         <div className="flex flex-wrap justify-center gap-4 mt-10">
 
-          <button className="bg-white text-teal-700 px-8 py-4 rounded-full font-semibold hover:scale-105 transition">
+          {/* Check Availability */}
+          <button
+            onClick={() => navigate("/availability")}
+            className="bg-white text-teal-700 px-8 py-4 rounded-full font-semibold hover:scale-105 transition"
+          >
             Check Availability
           </button>
 
-          <button className="border border-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-slate-900 transition">
+          {/* Contact Us */}
+          <button
+            onClick={handleContactClick}
+            className="border border-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-slate-900 transition"
+          >
             Contact Us
           </button>
 

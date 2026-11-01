@@ -12,6 +12,8 @@ import {
 
 import api from "../../services/api";
 
+const WHATSAPP_NUMBER = "917462854190";
+
 export default function BookingForm({ darkMode }) {
   const location = useLocation();
 
@@ -360,6 +362,35 @@ export default function BookingForm({ darkMode }) {
       // ========================================
       // Reset Form After Successful Booking
       // ========================================
+
+      // Open WhatsApp after successful booking
+const selectedRoomName =
+  rooms.find((room) => room._id === formData.roomId)?.name ||
+  "Not specified";
+
+const whatsappMessage = `
+Hello Trishul Homestay Team,
+
+I would like to enquire about my booking.
+
+Guest Name: ${formData.guestName.trim()}
+Email: ${formData.email.trim()}
+Phone: ${formData.phone.trim()}
+Room: ${selectedRoomName}
+Number of Guests: ${formData.guests}
+Check-in: ${formData.checkIn}
+Check-out: ${formData.checkOut}
+Special Request: ${formData.specialRequest.trim() || "None"}
+
+Please confirm availability and booking details.
+
+Thank you.
+`;
+
+const whatsappURL =
+  `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(whatsappMessage)}`;
+
+window.open(whatsappURL, "_blank", "noopener,noreferrer");
 
       setFormData({
         guestName: "",

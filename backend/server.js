@@ -51,42 +51,27 @@ const app = express();
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        "http://localhost:5173",
-        "http://localhost:4173",
-        process.env.FRONTEND_URL,
-      ].filter(Boolean);
-
-      // Allow Postman and server-to-server requests
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(new Error("Not allowed by CORS"));
-    },
-
-    credentials: true,
-
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:4173",
+      "https://trishul-homestay-direct-booking-eng.vercel.app",
+    ],
+    credentials: false,
     methods: [
       "GET",
       "POST",
       "PUT",
-      "DELETE",
       "PATCH",
+      "DELETE",
       "OPTIONS",
     ],
-
     allowedHeaders: [
       "Content-Type",
       "Authorization",
     ],
   })
 );
+
 
 // ======================================
 // JSON Middleware

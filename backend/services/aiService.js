@@ -1,12 +1,22 @@
+
+import "dotenv/config";
 import { GoogleGenAI } from "@google/genai";
 
 // ======================================
 // Gemini AI Initialization
 // ======================================
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+const getAIClient = () => {
+  const apiKey = process.env.GEMINI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error(
+      "GEMINI_API_KEY is missing. Please configure it in backend/.env"
+    );
+  }
+
+  return new GoogleGenAI({ apiKey });
+};
 
 // ======================================
 // Trishul Homestay Knowledge Base
@@ -37,11 +47,8 @@ Amenities:
 - Local Food (Subject to Availability)
 - Garden / Outdoor Sitting Area
 
-Check-in:
-12:00 PM
-
-Check-out:
-11:00 AM
+Check-in: 12:00 PM
+Check-out: 11:00 AM
 
 Booking Information:
 Guests can explore rooms, check availability and submit booking requests through the booking page.
@@ -52,7 +59,7 @@ Never guess availability.
 
 Pricing:
 Do not invent prices.
-If pricing is unavailable, politely ask the guest to visit the booking page.
+If pricing is unavailable, ask the guest to visit the booking page.
 
 Nearby Attractions:
 - Nature Trails
@@ -64,7 +71,7 @@ Important Rules:
 - Never invent room availability.
 - Never invent room prices.
 - Never promise a confirmed booking.
-- If information is unavailable, politely mention that live information is not available.
+- If information is unavailable, mention that live information is not available.
 `;
 
 // ======================================
@@ -79,33 +86,14 @@ Use the following knowledge while answering users.
 ${HOMESTAY_INFO}
 
 Behavior Rules:
-
-1. Answer only in a friendly, professional and helpful tone.
-
-2. If the user asks about:
-- Rooms
-- Booking
-- Amenities
-- Check-in
-- Check-out
-- Eco Tourism
-- Nearby Attractions
-
-Use the information provided above.
-
-3. If the answer depends on live booking data,
-clearly explain that real-time availability is checked from the booking system.
-
-4. Never make up:
-- Room prices
-- Policies
-- Availability
-- Discounts
-
-5. If the user asks something unrelated to Trishul Homestay,
-you may answer as a normal AI assistant.
-
-6. Keep answers concise unless the user asks for detailed information.
+1. Answer in a friendly, professional and helpful tone.
+2. Answer questions about rooms, booking, amenities, check-in,
+   check-out, eco tourism and nearby attractions using the supplied information.
+3. For live booking data, explain that availability is checked
+   through the booking system.
+4. Never invent prices, policies, availability or discounts.
+5. For unrelated questions, you may answer as a normal AI assistant.
+6. Keep answers concise unless the user asks for details.
 `;
 
 // ======================================
@@ -114,32 +102,36 @@ you may answer as a normal AI assistant.
 
 export const generateAIResponse = async (userPrompt) => {
   try {
+    if (typeof userPrompt !== "string" || !userPrompt.trim()) {
+      throw new Error("Please enter a question.");
+    }
+
+    const ai = getAIClient();
+
     const finalPrompt = `
 ${SYSTEM_PROMPT}
 
 User Question:
-${userPrompt}
+${userPrompt.trim()}
 
 Answer:
 `;
-
+    console.log("AI request using Gemini API key:", Boolean(process.env.GEMINI_API_KEY));
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-3.6-flash",
       contents: finalPrompt,
     });
+
+    if (!response.text) {
+      throw new Error("The AI returned an empty response. Please try again.");
+    }
 
     return {
       success: true,
       response: response.text,
     };
   } catch (error) {
-    console.error("Gemini AI Error:", error);
-
-    throw new Error(
-      error.message || "Failed to generate AI response.",
-      {
-        cause: error,
-      }
-    );
+    console.error("Gemini AI Error:", error.message);
+    throw error;
   }
 };
