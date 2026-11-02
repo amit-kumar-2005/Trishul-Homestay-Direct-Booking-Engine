@@ -1,5 +1,5 @@
-
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContext";
 
 import standardRoom from "../../assets/images/room-standard.jpg";
 import deluxeRoom from "../../assets/images/room-deluxe.jpg";
@@ -13,15 +13,20 @@ const roomImages = {
 
 export default function RoomCard({ room }) {
   const navigate = useNavigate();
+  const { darkMode } = useTheme();
 
   const handleViewDetails = () => {
     navigate(`/rooms/${room._id}`);
   };
 
   return (
-    <div className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-lg transition">
-
-      {/* Room Image */}
+    <div
+      className={`rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 ${
+        darkMode
+          ? "bg-slate-800 text-white border border-slate-700"
+          : "bg-white text-slate-900 border border-slate-200"
+      }`}
+    >
       <img
         src={roomImages[room.image] || standardRoom}
         alt={room.name}
@@ -30,28 +35,36 @@ export default function RoomCard({ room }) {
 
       <div className="p-6">
 
-        {/* Room Name and Price */}
         <div className="flex justify-between items-center mb-3 gap-3">
-          <h3 className="text-2xl font-bold">
+          <h3
+            className={`text-2xl font-bold ${
+              darkMode ? "text-white" : "text-slate-900"
+            }`}
+          >
             {room.name}
           </h3>
 
-          <span className="text-teal-700 font-bold whitespace-nowrap">
+          <span className="text-teal-500 font-bold whitespace-nowrap">
             ₹{Number(room.price).toLocaleString("en-IN")}
           </span>
         </div>
 
-        {/* Room Information */}
-        <p className="text-gray-500 mb-3">
+        <p
+          className={`mb-3 ${
+            darkMode ? "text-slate-300" : "text-gray-500"
+          }`}
+        >
           {room.guests} Guests • {room.beds} Bed • {room.bathrooms} Bathroom
         </p>
 
-        {/* Description */}
-        <p className="text-gray-600 mb-5">
+        <p
+          className={`mb-5 leading-relaxed ${
+            darkMode ? "text-slate-300" : "text-gray-600"
+          }`}
+        >
           {room.description}
         </p>
 
-        {/* View Details Button */}
         <button
           type="button"
           onClick={handleViewDetails}

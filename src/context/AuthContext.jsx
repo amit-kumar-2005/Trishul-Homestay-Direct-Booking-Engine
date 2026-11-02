@@ -53,18 +53,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   // =========================
-  // Register
-  // =========================
+// Register
+// =========================
 
-  const register = async (userData) => {
-    const response = await authService.register(userData);
+const register = async (userData) => {
+  const response = await authService.register(userData);
 
-    localStorage.setItem("token", response.token);
+  // Do not automatically log in after registration.
+  // User must log in manually.
 
-    setUser(response.data);
-
-    return response;
-  };
+  return response;
+};
 
   // =========================
   // Logout

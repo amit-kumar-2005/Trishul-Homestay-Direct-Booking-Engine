@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
+import { useTheme } from "../context/ThemeContext";
 
 import {
   User,
@@ -50,7 +51,7 @@ const actions = [
   {
     title: "AI Travel Assistant",
     desc: "Get personalized travel help.",
-    to: "/",
+    isAI: true,
     icon: Sparkles,
   },
 ];
@@ -146,6 +147,21 @@ const getStatusStyle = (status) => {
 
 export default function Dashboard() {
   const { user } = useAuth();
+  const { darkMode } = useTheme();
+
+const dashboardThemeClasses = darkMode
+  ? [
+      "[&_.bg-white]:!bg-slate-800",
+      "[&_.bg-slate-50]:!bg-slate-800",
+      "[&_.text-slate-900]:!text-white",
+      "[&_.text-slate-800]:!text-white",
+      "[&_.text-slate-700]:!text-slate-200",
+      "[&_.text-slate-600]:!text-slate-300",
+      "[&_.text-slate-500]:!text-slate-400",
+      "[&_.text-gray-900]:!text-white",
+      "[&_.text-gray-800]:!text-white",
+    ].join(" ")
+  : "";
 
   const [bookings, setBookings] = useState([]);
 
@@ -348,7 +364,9 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-5 py-8">
+      <div
+  className={`max-w-7xl mx-auto px-5 py-8 transition-colors duration-300 ${dashboardThemeClasses}`}
+>
 
         {/* ======================================
             Welcome Banner
@@ -409,11 +427,20 @@ export default function Dashboard() {
               {actions.map((item) => {
                 const Icon = item.icon;
 
+                const ActionWrapper = item.isAI ? "button" : Link;
+                const actionProps = item.isAI
+                  ? {
+                      type: "button",
+                      onClick: () =>
+                        window.dispatchEvent(new Event("open-ai-chat")),
+                    }
+                  : { to: item.to };
+
                 return (
-                  <Link
+                  <ActionWrapper
                     key={item.title}
-                    to={item.to}
-                    className="group rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-xl transition"
+                    {...actionProps}
+                    className="group w-full text-left rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-xl transition"
                   >
                     <div className="w-14 h-14 rounded-xl bg-teal-100 dark:bg-teal-900 flex items-center justify-center">
                       <Icon
@@ -438,7 +465,7 @@ export default function Dashboard() {
                         className="group-hover:translate-x-1 transition"
                       />
                     </div>
-                  </Link>
+                  </ActionWrapper>
                 );
               })}
             </div>
@@ -504,17 +531,36 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div className="mt-8 rounded-xl bg-teal-50 dark:bg-slate-800 p-4">
-                <p className="font-semibold">
-                  Booking Dashboard
-                </p>
+              {/* Booking Dashboard Information */}
+<div
+  className={`mt-8 rounded-xl p-4 transition-colors duration-300 ${
+    darkMode
+      ? "bg-slate-800 border border-slate-700"
+      : "bg-teal-50 border border-teal-100"
+  }`}
+>
+  <p
+    className={`font-semibold ${
+      darkMode
+        ? "text-white"
+        : "text-slate-900"
+    }`}
+  >
+    Booking Dashboard
+  </p>
 
-                <p className="text-sm mt-2 text-slate-600 dark:text-slate-300">
-                  View and manage your Trishul
-                  Homestay booking activity securely
-                  from your account.
-                </p>
-              </div>
+  <p
+    className={`text-sm mt-2 leading-relaxed ${
+      darkMode
+        ? "text-slate-300"
+        : "text-slate-600"
+    }`}
+  >
+    View and manage your Trishul
+    Homestay booking activity securely
+    from your account.
+  </p>
+</div>
             </div>
           </div>
         </div>
