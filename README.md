@@ -1,249 +1,482 @@
 # Trishul Homestay Direct Booking Engine
 
-A modern full-stack homestay booking application developed as part of the **TBI GEU SIP 2026 Full Stack Development Internship**.
+A modern full-stack web application designed to simplify the homestay booking process. The platform allows users to explore rooms, check availability, submit booking requests, and manage their reservations through a responsive and user-friendly interface.
 
-The application allows users to browse rooms, search accommodations, filter rooms, check availability, and submit booking requests through a responsive React frontend powered by an Express REST API with MongoDB Atlas.
+**Developed as an MCA 3rd Semester Mini Project** at Graphic Era (Deemed to be) University, Dehradun.
 
 ---
 
-# Tech Stack
+## Table of Contents
 
-## Frontend
+- [Project Overview](#project-overview)
+- [Problem Statement](#problem-statement)
+- [Project Objectives](#project-objectives)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [System Architecture](#system-architecture)
+- [Project Structure](#project-structure)
+- [Database Design](#database-design)
+- [API Documentation](#api-documentation)
+- [Authentication and Authorization](#authentication-and-authorization)
+- [AI Travel Assistant](#ai-travel-assistant)
+- [Installation and Setup](#installation-and-setup)
+- [Environment Configuration](#environment-configuration)
+- [Running the Application](#running-the-application)
+- [Screenshots](#screenshots)
+- [Live Deployment](#live-deployment)
+- [Testing](#testing)
+- [Future Enhancements](#future-enhancements)
+- [Academic Information](#academic-information)
 
-- React
-- Vite
-- Tailwind CSS
-- Axios
-- React Router DOM
+---
 
-## Backend
+## Project Overview
 
-- Node.js
-- Express.js
-- REST API
-- CORS
-- Dotenv
+Trishul Homestay Direct Booking Engine is a full-stack web application developed to provide a convenient platform for managing homestay room discovery and booking activities.
 
-## Database
+The application provides separate functionalities for users and administrators. Users can browse available rooms, check availability, submit booking requests, and view their booking history. Administrators can manage room information and monitor booking activities through an administrative dashboard.
+
+The system uses React for the frontend, Node.js and Express.js for backend services, and MongoDB Atlas for database management.
+
+## Problem Statement
+
+Traditional homestay booking processes often involve manual communication, limited room information, and difficulties in checking room availability.
+
+Customers may need to contact property owners directly to obtain room details and booking information. This process can be time-consuming and inconvenient.
+
+The proposed system provides a centralized digital platform where customers can explore rooms, check availability, and submit booking requests more conveniently.
+
+## Project Objectives
+
+- Develop a responsive homestay booking platform.
+- Provide dynamic room listing and room details.
+- Implement room search, filtering, and sorting.
+- Allow users to check room availability.
+- Enable users to register and log in securely.
+- Implement role-based access for users and administrators.
+- Provide booking management functionality.
+- Store application data using MongoDB Atlas.
+- Integrate an AI-powered travel assistant.
+- Provide a user-friendly dashboard and modern interface.
+
+## Key Features
+
+### User Features
+
+- User Registration and Login
+- Google Authentication
+- User Dashboard
+- User Profile Information
+- Browse Available Rooms
+- Room Details
+- Room Search and Filtering
+- Price Sorting
+- Pagination
+- Room Availability Checking
+- Booking Request Submission
+- Booking History
+- Booking Details
+- Booking Cancellation
+- Dark and Light Theme
+- AI Travel Assistant
+- WhatsApp Contact Integration
+
+### Admin Features
+
+- Admin Authentication
+- Admin Dashboard
+- Role-Based Access Control
+- Room Management
+- Add New Rooms
+- Update Room Information
+- Delete Rooms
+- Booking Management
+- Booking Status Management
+
+### General Features
+
+- Responsive User Interface
+- RESTful API Architecture
+- MongoDB Atlas Integration
+- Mongoose ODM
+- Form Validation
+- Error Handling Middleware
+- Axios API Integration
+- JWT-Based Authentication
+
+---
+
+## Technology Stack
+
+### Frontend
+
+| Technology | Purpose |
+|---|---|
+| React.js | User interface development |
+| Vite | Frontend development and build tool |
+| Tailwind CSS | Responsive styling |
+| JavaScript | Application functionality |
+| Axios | API communication |
+| React Router DOM | Client-side routing |
+| Lucide React | Icons |
+| React Toastify | Notifications |
+
+### Backend
+
+| Technology | Purpose |
+|---|---|
+| Node.js | JavaScript runtime |
+| Express.js | Backend framework |
+| REST API | Client-server communication |
+| Mongoose | MongoDB object modeling |
+| JWT | Authentication |
+| bcrypt | Password hashing |
+| Passport.js | Authentication integration |
+| Express Validator | Request validation |
+| CORS | Cross-origin communication |
+| Dotenv | Environment configuration |
+
+### Database
 
 - MongoDB Atlas
 - Mongoose ODM
 
-## Tools
+### AI Integration
 
-- Git & GitHub
-- VS Code
+- Google Gemini API
+- Google GenAI SDK
+
+### Development and Testing Tools
+
+- Visual Studio Code
+- Git and GitHub
 - Postman
 - MongoDB Compass
-- Draw.io (Database Schema)
+- Draw.io
+- Google Chrome
+
+### Deployment
+
+- Vercel – Frontend Hosting
+- Render – Backend Hosting
+- MongoDB Atlas – Cloud Database
 
 ---
 
-# Project Structure
+## System Architecture
+
+The application follows a client-server architecture.
+
+1. **Frontend Layer:** React.js provides the user interface and communicates with the backend through Axios.
+2. **Backend Layer:** Node.js and Express.js process API requests, authentication, booking operations, and application logic.
+3. **Database Layer:** MongoDB Atlas stores user, room, booking, and availability information.
+4. **Authentication Layer:** JWT-based authentication and role-based authorization protect restricted resources.
+5. **AI Layer:** Google Gemini integration powers the AI Travel Assistant.
+
+### Application Flow
 
 ```text
-trishul-homestay-react
+             USER / ADMIN
+                  |
+                  v
+          React Frontend
+                  |
+                  v
+          Axios API Requests
+                  |
+                  v
+          Express.js Backend
+                  |
+          -------------------
+          |        |        |
+          v        v        v
+        Auth    Booking   Room APIs
+          |        |        |
+          -------------------
+                  |
+                  v
+             Mongoose ODM
+                  |
+                  v
+            MongoDB Atlas
+
+                  |
+                  v
+           Google Gemini API
+           (AI Assistant)
+```
+
+---
+
+## Project Structure
+
+```text
+trishul-homestay-react/
 │
-├── backend
-│   ├── config
-│   ├── controllers
-│   ├── middleware
-│   ├── models
-│   ├── routes
-│   ├── seeders
-│   ├── data
-│   ├── utils
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── seeders/
+│   ├── data/
+│   ├── utils/
 │   ├── server.js
 │   ├── package.json
 │   ├── .env
 │   └── .env.example
 │
-├── docs
+├── docs/
 │   ├── W5_Database_Schema.drawio
 │   ├── W5_Database_Schema.png
 │   └── TBI-26100150_W5_Postman_API_Testing.pdf
 │
-├── src
-│   ├── assets
-│   ├── components
-│   ├── context
-│   ├── hooks
-│   ├── layouts
-│   ├── pages
-│   ├── routes
-│   ├── services
-│   └── utils
+├── public/
+│
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── ai/
+│   │   ├── availability/
+│   │   ├── booking/
+│   │   ├── common/
+│   │   ├── home/
+│   │   ├── rooms/
+│   │   └── ui/
+│   ├── context/
+│   ├── data/
+│   ├── hooks/
+│   ├── layouts/
+│   ├── pages/
+│   ├── routes/
+│   ├── services/
+│   └── utils/
 │
 ├── package.json
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-# Features
+## Database Design
 
-- Responsive User Interface
-- Dark / Light Theme
-- Dynamic Room Listing
-- Room Details API
-- Room Search
-- Room Filtering
-- Room Sorting
-- Pagination
-- Availability Checking
-- Booking Form
-- Booking Validation
-- Booking Status Management
-- MongoDB Atlas Integration
-- Mongoose ODM
-- Persistent Database Storage
-- RESTful Backend APIs
-- Axios Integration
-- Error Handling Middleware
+The application uses **MongoDB Atlas** as its cloud database and **Mongoose ODM** for schema definition, validation, and database operations.
 
----
+### Main Collections
 
-# Database
+#### 1. User Collection
 
-## Database Choice
+Stores registered user and administrator information.
 
-This project uses **MongoDB Atlas** as the cloud database for storing Rooms, Bookings, and Availability data.
+Main fields:
 
-## ODM
+- `_id`
+- `name`
+- `email`
+- `password`
+- `role`
+- `createdAt`
+- `updatedAt`
 
-The backend uses **Mongoose** for schema creation, validation, relationships, and CRUD operations.
+#### 2. Room Collection
 
-## Collections
+Stores homestay room information.
 
-### Room
+Main fields:
 
-Stores all room information.
+- `_id`
+- `name`
+- `price`
+- `guests`
+- `beds`
+- `bathrooms`
+- `description`
+- `image`
+- `amenities`
+- `isAvailable`
+- `createdAt`
+- `updatedAt`
 
-**Fields**
-
-- _id
-- name
-- price
-- guests
-- beds
-- bathrooms
-- description
-- image
-- amenities
-- isAvailable
-- createdAt
-- updatedAt
-
-### Booking
+#### 3. Booking Collection
 
 Stores customer booking information.
 
-**Fields**
+Main fields:
 
-- _id
-- roomId
-- guestName
-- email
-- phone
-- guests
-- checkIn
-- checkOut
-- status
-- createdAt
-- updatedAt
+- `_id`
+- `roomId`
+- `guestName`
+- `email`
+- `phone`
+- `guests`
+- `checkIn`
+- `checkOut`
+- `status`
+- `createdAt`
+- `updatedAt`
 
-### Availability
+#### 4. Availability Collection
 
-Stores daily room availability.
+Stores room availability information.
 
-**Fields**
+Main fields:
 
-- _id
-- roomId
-- date
-- isAvailable
-- createdAt
-- updatedAt
+- `_id`
+- `roomId`
+- `date`
+- `isAvailable`
+- `createdAt`
+- `updatedAt`
 
-## Relationships
+### Database Relationships
 
-```
+```text
 Room (1) -------- (N) Booking
 
 Room (1) -------- (N) Availability
 ```
 
----
+### Database Schema Diagram
 
-# Database Schema
-
-The database schema was designed using **Draw.io**.
+The database schema was designed using Draw.io.
 
 ![Database Schema](docs/W5_Database_Schema.png)
 
 ---
 
-# REST API Endpoints
+## API Documentation
 
-## Rooms
+The backend exposes RESTful APIs for room management, availability checking, authentication, and booking operations.
 
-GET `/api/rooms`
+### 1. Authentication APIs
 
-GET `/api/rooms/:id`
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register a new user |
+| POST | `/api/auth/login` | User/Admin login |
+| GET | `/api/auth/me` | Get authenticated user |
+| POST | `/api/auth/logout` | Logout |
 
-GET `/api/rooms/search?q=keyword`
+### 2. Room APIs
 
-### Supports
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/rooms` | Get all rooms |
+| GET | `/api/rooms/:id` | Get room by ID |
+| GET | `/api/rooms/search?q=keyword` | Search rooms |
 
-- Price Filter
-- Guest Filter
-- Availability Filter
-- Price Sorting
-- Pagination
+Supported operations include room filtering, price sorting, guest filtering, and pagination.
+
+### 3. Availability APIs
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/availability` | Check room availability |
+
+### 4. Booking APIs
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/bookings` | Get bookings |
+| GET | `/api/bookings/:id` | Get booking details |
+| POST | `/api/bookings` | Create booking |
+| PUT | `/api/bookings/:id` | Update booking |
+| PUT | `/api/bookings/:id/status` | Update booking status |
+| DELETE | `/api/bookings/:id` | Delete booking |
+
+*Note: API access and permitted operations depend on the authentication and authorization middleware.*
 
 ---
 
-## Availability
+## Authentication and Authorization
 
-GET `/api/availability`
+The application implements authentication and role-based access control.
+
+### Authentication Features
+
+- User Registration
+- User Login
+- Password Hashing using bcrypt
+- JWT Token Generation
+- Protected Routes
+- Authenticated User Profile
+- Google Authentication Integration
+
+### Role-Based Access Control
+
+Two application roles are supported:
+
+**User**
+- Access user dashboard.
+- Browse rooms.
+- Check availability.
+- Submit booking requests.
+- View booking history.
+
+**Admin**
+- Access admin dashboard.
+- Manage rooms.
+- Manage booking activities.
+- Update booking statuses.
+
+Protected routes restrict access based on the authenticated user's role.
 
 ---
 
-## Bookings
+## AI Travel Assistant
 
-GET `/api/bookings`
+The application includes an AI-powered Travel Assistant integrated with Google Gemini.
 
-GET `/api/bookings/:id`
+The chatbot provides a conversational interface to help users with homestay-related queries.
 
-POST `/api/bookings`
+### Supported Assistance Areas
 
-PUT `/api/bookings/:id`
+- Room availability-related queries
+- Booking information
+- Check-in and check-out information
+- Homestay facilities
+- Nearby attractions
+- General travel assistance
 
-PUT `/api/bookings/:id/status`
-
-DELETE `/api/bookings/:id`
+The frontend provides an interactive chatbot interface with message history, loading indicators, and formatted AI responses.
 
 ---
 
-# Installation & Setup
+## Installation and Setup
 
-## 1. Clone Repository
+Follow these steps to run the project locally.
+
+### Prerequisites
+
+Install the following software:
+
+- Node.js
+- npm
+- Git
+- MongoDB Atlas account
+- Visual Studio Code
+
+### 1. Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/amit-kumar-2005/Trishul-Homestay-Direct-Booking-Engine.git
 ```
 
----
+### 2. Navigate to Project Directory
 
-## 2. Install Frontend Dependencies
+```bash
+cd Trishul-Homestay-Direct-Booking-Engine
+```
+
+### 3. Install Frontend Dependencies
 
 ```bash
 npm install
 ```
 
----
-
-## 3. Install Backend Dependencies
+### 4. Install Backend Dependencies
 
 ```bash
 cd backend
@@ -252,232 +485,223 @@ npm install
 
 ---
 
-## 4. Configure Environment Variables
+## Environment Configuration
 
-Create a `.env` file inside the **backend** folder.
+Create a `.env` file inside the `backend` directory.
+
+Example configuration:
 
 ```env
 PORT=5000
-MONGO_URI=your_mongodb_atlas_connection_string
+
+MONGODB_URI=your_mongodb_atlas_connection_string
+
+JWT_SECRET=your_secure_jwt_secret
+
+JWT_EXPIRE=7d
+
+GOOGLE_CLIENT_ID=your_google_client_id
+
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+GOOGLE_CALLBACK_URL=your_google_callback_url
 ```
 
-You can also copy values from:
+If your AI integration requires an API key, configure it using the exact environment variable name referenced in your AI service code.
 
+For frontend API configuration, create or update the frontend `.env` file:
+
+```env
+VITE_API_URL=http://localhost:5000/api
 ```
-backend/.env.example
-```
+
+**Important:**
+
+- Never upload your actual `.env` files to GitHub.
+- Keep database credentials and API keys private.
+- Configure production environment variables separately on the hosting platforms.
+- Use the variable names expected by the application code.
 
 ---
 
-## 5. Run Backend
+## Running the Application
+
+The frontend and backend must run in separate terminals.
+
+### 1. Start Backend
 
 ```bash
 cd backend
 npm run dev
 ```
 
-Backend URL
+Backend development server:
 
+```text
+http://localhost:5000
 ```
-https://trishul-homestay-direct-booking-engine-1.onrender.com
-```
 
----
+### 2. Start Frontend
 
-## 6. Run Frontend
+Open another terminal in the project root directory.
 
 ```bash
 npm run dev
 ```
 
-Frontend URL
+Frontend development server:
 
-```
+```text
 http://localhost:5173
 ```
 
----
-
-# API Testing
-
-All REST APIs were successfully tested using **Postman**.
-
-## Rooms API
-
-- Get All Rooms
-- Get Room By ID
-- Search Rooms
-- Filter Rooms
-- Sort Rooms
-- Pagination
-
-## Booking API
-
-- Create Booking
-- Get All Bookings
-- Get Booking By ID
-- Update Booking
-- Update Booking Status
-- Delete Booking
-
-## Availability API
-
-- Check Room Availability
+Open the frontend URL in your browser to access the application.
 
 ---
 
-# Internship Progress
+## Screenshots
 
-## Week 1
+Add screenshots of the actual running application in the `docs/screenshots/` directory.
 
-- Project Planning
-- GitHub Repository Setup
-- Initial Project Structure
+Suggested screenshots:
 
-## Week 2
+| Screenshot | Description |
+|---|---|
+| `homepage.png` | Application homepage |
+| `rooms.png` | Room listing page |
+| `room-details.png` | Room details page |
+| `availability.png` | Availability checking page |
+| `booking.png` | Booking form |
+| `login.png` | Login page |
+| `register.png` | Registration page |
+| `user-dashboard.png` | User dashboard |
+| `admin-dashboard.png` | Admin dashboard |
+| `ai-assistant.png` | AI Travel Assistant |
 
-- React + Vite Setup
-- Tailwind CSS
-- Routing
-- Reusable Components
+Example:
 
-## Week 3
+```markdown
+![Homepage](docs/screenshots/homepage.png)
 
-- UI/UX Improvements
-- Responsive Design
-- Dark / Light Theme
-- Figma Wireframes
-- Component Library
+![Room Listing](docs/screenshots/rooms.png)
 
-## Week 4
-
-- Express Backend
-- REST API Development
-- Axios Integration
-- Availability API
-- Booking CRUD APIs
-- Error Handling Middleware
-- Frontend & Backend Integration
-
-## Week 5
-
-- MongoDB Atlas Setup
-- Mongoose Integration
-- Database Schema Design
-- Room Model
-- Booking Model
-- Availability Model
-- CRUD Operations
-- Search API
-- Filter API
-- Sorting API
-- Pagination
-- Persistent Database Storage
-- Database Schema Diagram
-- Postman API Testing Documentation
+![User Dashboard](docs/screenshots/user-dashboard.png)
+```
 
 ---
 
-# Future Improvements
-
-- JWT Authentication
-- Role-Based Access Control
-- Admin Dashboard
-- Online Payments
-- Booking History
-- Booking Invoice
-- Booking Cancellation
-- Email Notifications
-- Image Upload
-- Review & Rating System
-- Analytics Dashboard
-
----
-
-## 🚀 Live Deployment
+## Live Deployment
 
 ### Frontend
-Live Frontend: https://trishul-homestay-direct-booking-eng.vercel.app
 
-### Backend API
-Live Backend API: https://trishul-homestay-direct-booking-engine-1.onrender.com
+[Trishul Homestay – Live Website](https://trishul-homestay-direct-booking-eng.vercel.app)
 
-### 🛠️ Tech Stack
+### Backend
 
-#### Frontend
-- React.js
-- Vite
-- Tailwind CSS
-- React Router
-- JavaScript
-- Responsive UI
+[Trishul Homestay – Backend API](https://trishul-homestay-direct-booking-engine-1.onrender.com)
 
-#### Backend
-- Node.js
-- Express.js
-- REST API
-- JWT Authentication
-- CORS
+### GitHub Repository
 
-#### Database
-- MongoDB Atlas
+[View Source Code on GitHub](https://github.com/amit-kumar-2005/Trishul-Homestay-Direct-Booking-Engine)
 
-#### Deployment
-- Vercel — Frontend
-- Render — Backend
-- MongoDB Atlas — Database
+### Deployment Services
 
-#### AI Integration
-- Google Gemini API
+| Service | Platform |
+|---|---|
+| Frontend Hosting | Vercel |
+| Backend Hosting | Render |
+| Cloud Database | MongoDB Atlas |
 
-### 🔐 Authentication & Authorization
-- User Registration
-- User Login
-- JWT-based authentication
-- Admin authentication
-- Role-based access control
+---
 
-### ✨ Core Features
-- Responsive homepage
-- Room listing and room details
-- Room availability
-- User registration and login
-- Admin dashboard
-- Room CRUD operations
-- Booking functionality
+## Testing
+
+The application has been tested using Postman and through browser-based functional testing.
+
+### Backend API Testing
+
+- User Registration API
+- User Login API
+- Current User API
+- Room Listing API
+- Room Details API
+- Room Search and Filtering
+- Availability API
+- Booking Creation API
+- Booking Details API
+- Booking Management APIs
+
+### Authentication Testing
+
+- Successful registration
+- Successful login
+- JWT token generation
+- Protected route access
+- Unauthorized access handling
+- Role-based access restrictions
+
+### Frontend Testing
+
+- Page navigation
+- Responsive layout
 - User dashboard
-- WhatsApp contact integration
-- Light/Dark theme support
-- AI-assisted functionality
+- Admin dashboard
+- Room browsing
+- Booking workflow
+- Dark and Light Theme
+- AI chatbot interface
 
-### ⚠️ Known Limitations on Free Tier
+---
 
-- The Render free-tier backend may spin down after a period of inactivity.
-- The first request after inactivity may take some time while the backend wakes up.
-- Vercel and Render deployments depend on their respective free-tier limits.
-- MongoDB Atlas availability and limits depend on the selected free-tier configuration.
+## Future Enhancements
 
-### 🧪 Production Testing
+The project can be extended with the following functionalities:
 
-The deployed application has been tested on the live production URL.
+- Online Payment Gateway Integration
+- Booking Invoice Generation
+- Email and SMS Notifications
+- Advanced Booking Calendar
+- Image Upload Management
+- Review and Rating System
+- Advanced Admin Analytics
+- Enhanced AI Travel Recommendations
+- Booking Reports and Analytics
+- Improved Security and Rate Limiting
 
-Verified functionality:
-- Frontend pages load successfully
-- User registration works
-- User login works
-- Admin login works
-- Room CRUD operations work
-- Database persistence works
-- User booking functionality works
-- Role-based access control works
-- Production frontend communicates with the Render backend successfully
+---
 
-# Author
+## Academic Information
+
+**Project Title:** Trishul Homestay Direct Booking Engine
+
+**Project Type:** MCA 3rd Semester Mini Project
+
+**Student Name:** Amit Kumar
+
+**Course:** Master of Computer Applications (MCA)
+
+**Semester:** 3rd Semester
+
+**University:** Graphic Era (Deemed to be) University, Dehradun
+
+---
+
+## Acknowledgement
+
+The initial development journey of this project began during the TBI GEU SIP 2026 Full Stack Development Internship. The project has subsequently been extended and enhanced for academic mini-project purposes as part of the MCA curriculum.
+
+---
+
+## Author
 
 **Amit Kumar**
 
-**Intern ID:** TBI-26100150
+MCA – 3rd Semester
 
-**TBI GEU SIP 2026**
+Graphic Era (Deemed to be) University, Dehradun
 
-**Full Stack Development Internship**
+**GitHub:** [amit-kumar-2005](https://github.com/amit-kumar-2005)
+
+---
+
+*Trishul Homestay Direct Booking Engine – A Full Stack Web Development Project.*
