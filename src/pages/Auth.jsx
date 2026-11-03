@@ -151,10 +151,8 @@ export default function Auth() {
   };
 
   const handleForgotPassword = () => {
-    toast.info(
-      "Password reset functionality will be enabled in the next step."
-    );
-  };
+  navigate("/forgot-password");
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-slate-100 dark:bg-slate-950 transition-colors duration-300">

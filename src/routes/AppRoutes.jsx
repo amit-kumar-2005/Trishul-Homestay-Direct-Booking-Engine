@@ -27,6 +27,8 @@ import ComponentDemo from "../pages/ComponentDemo";
 
 import Auth from "../pages/Auth";
 import GoogleCallback from "../pages/GoogleCallback";
+import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
 
 // =========================================
 // Route Guards
@@ -49,46 +51,31 @@ export default function AppRoutes() {
 
       <Route element={<MainLayout />}>
 
-        {/* =======================================
-            Home
-        ======================================= */}
-
+        {/* Home */}
         <Route
           path="/"
           element={<Home />}
         />
 
-        {/* =======================================
-            Rooms
-        ======================================= */}
-
+        {/* Rooms */}
         <Route
           path="/rooms"
           element={<Rooms />}
         />
 
-        {/* =======================================
-            Individual Room Details
-        ======================================= */}
-
+        {/* Individual Room Details */}
         <Route
           path="/rooms/:id"
           element={<RoomDetails />}
         />
 
-        {/* =======================================
-            Availability
-        ======================================= */}
-
+        {/* Availability */}
         <Route
           path="/availability"
           element={<Availability />}
         />
 
-        {/* =======================================
-            Protected Booking Route
-        ======================================= */}
-
+        {/* Protected Booking */}
         <Route
           path="/booking"
           element={
@@ -98,10 +85,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* =======================================
-            Protected Booking Details Route
-        ======================================= */}
-
+        {/* Protected Booking Details */}
         <Route
           path="/booking/:id"
           element={
@@ -111,10 +95,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* =======================================
-            Protected User Dashboard
-        ======================================= */}
-
+        {/* Protected User Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -124,10 +105,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* =======================================
-            Protected Admin Dashboard
-        ======================================= */}
-
+        {/* Protected Admin Dashboard */}
         <Route
           path="/admin/dashboard"
           element={
@@ -137,10 +115,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* =======================================
-            Protected Admin Rooms
-        ======================================= */}
-
+        {/* Protected Admin Rooms */}
         <Route
           path="/admin/rooms"
           element={
@@ -150,10 +125,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* =======================================
-            Component Demo
-        ======================================= */}
-
+        {/* Component Demo */}
         <Route
           path="/components"
           element={<ComponentDemo />}
@@ -166,15 +138,28 @@ export default function AppRoutes() {
       ========================================= */}
 
       <Route
-  path="/login"
-  element={<Auth />}
-/>
+        path="/login"
+        element={<Auth />}
+      />
 
-<Route
-  path="/register"
-  element={<Auth />}
-/>
+      <Route
+        path="/register"
+        element={<Auth />}
+      />
 
+      {/* Forgot Password */}
+      <Route
+        path="/forgot-password"
+        element={<ForgotPassword />}
+      />
+
+      {/* Reset Password */}
+      <Route
+        path="/reset-password/:token"
+        element={<ResetPassword />}
+      />
+
+      {/* Google OAuth Callback */}
       <Route
         path="/auth/google/callback"
         element={<GoogleCallback />}

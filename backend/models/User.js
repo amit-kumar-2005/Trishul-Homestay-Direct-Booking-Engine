@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
@@ -27,6 +28,17 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user",
+    },
+
+    // Password Reset Fields
+    resetPasswordToken: {
+      type: String,
+      select: false,
+    },
+
+    resetPasswordExpires: {
+      type: Date,
+      select: false,
     },
   },
   {

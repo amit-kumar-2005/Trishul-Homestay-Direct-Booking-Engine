@@ -1,3 +1,4 @@
+
 import express from "express";
 import passport from "passport";
 
@@ -6,6 +7,8 @@ import {
   loginUser,
   logoutUser,
   getCurrentUser,
+  forgotPassword,
+  resetPassword,
 } from "../controllers/authController.js";
 
 import { protect } from "../middleware/authMiddleware.js";
@@ -43,6 +46,20 @@ router.post(
   loginUser
 );
 
+// Forgot Password
+router.post(
+  "/forgot-password",
+  authLimiter,
+  forgotPassword
+);
+
+// Reset Password
+router.post(
+  "/reset-password/:token",
+  authLimiter,
+  resetPassword
+);
+
 // ======================================
 // Google OAuth
 // ======================================
@@ -63,7 +80,6 @@ router.get(
     failureRedirect: "http://localhost:5173/login",
   }),
   (req, res) => {
-    // Redirect to React app with JWT token
     res.redirect(
       `http://localhost:5173/auth/google/callback?token=${req.user.token}`
     );
